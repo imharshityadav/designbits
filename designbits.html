@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesignBits — Digital Products for Every Part of Life</title>
+<meta name="description" content="DesignBits is a digital products store — e-books, templates, kids' activity books, planners and celebration cards, made simple and instantly downloadable.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F6F1;
+  --bg-alt:#FFFFFF;
+  --paper:#FCFBF8;
+  --ink:#1C1B1F;
+  --ink-soft:#5B5A63;
+  --ink-faint:#8C8B92;
+  --line:#E7E4DA;
+  --brand:#4B3FE0;
+  --brand-dark:#372DAE;
+  --brand-tint:#EDEBFC;
+  --amber:#DB9A2E; --amber-dark:#A56E17; --amber-tint:#FBF0DC;
+  --sky:#2F86BF; --sky-dark:#215F8B; --sky-tint:#E3F0F9;
+  --coral:#E85670; --coral-dark:#B7364C; --coral-tint:#FCE6EA;
+  --teal:#238E76; --teal-dark:#166352; --teal-tint:#DEF2ED;
+  --plum:#A32E76; --plum-dark:#791F58; --plum-tint:#F5E1EE;
+  --radius-sm:10px;
+  --radius:16px;
+  --radius-lg:26px;
+  --shadow-sm:0 2px 8px rgba(28,27,31,.06);
+  --shadow:0 10px 30px rgba(28,27,31,.09);
+  --shadow-lg:0 20px 50px rgba(28,27,31,.14);
+  --maxw:1200px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Sora',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55;}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;line-height:1.12;margin:0 0 .5em;letter-spacing:-.01em;}
+p{margin:0 0 1em;}
+a{color:inherit;text-decoration:none;}
+img,svg{display:block;max-width:100%;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+button{font-family:inherit;cursor:pointer;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:4px;}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:999px;border:1.5px solid transparent;font-weight:600;font-size:15px;transition:transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;white-space:nowrap;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--ink);color:#fff;}
+.btn-primary:hover{background:var(--brand-dark);}
+.btn-outline{background:transparent;border-color:var(--ink);color:var(--ink);}
+.btn-outline:hover{background:var(--ink);color:#fff;}
+.btn-ghost{background:var(--bg-alt);border-color:var(--line);color:var(--ink);}
+.btn-ghost:hover{border-color:var(--ink);}
+.btn-block{width:100%;}
+.btn-sm{padding:9px 16px;font-size:13.5px;}
+.btn[disabled]{opacity:.5;cursor:not-allowed;}
+
+/* Badges */
+.badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.03em;text-transform:uppercase;padding:4px 10px;border-radius:999px;font-weight:600;}
+.badge-bestseller{background:var(--brand-tint);color:var(--brand-dark);}
+.badge-new{background:var(--teal-tint);color:var(--teal-dark);}
+.badge-sale{background:var(--coral-tint);color:var(--coral-dark);}
+.badge-demo{background:#F1EFE7;color:var(--ink-soft);}
+
+/* Header */
+#site-header{position:sticky;top:0;z-index:50;background:rgba(247,246,241,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;max-width:var(--maxw);margin:0 auto;}
+.logo{display:flex;align-items:center;gap:9px;font-family:'Fraunces',serif;font-weight:700;font-size:22px;letter-spacing:-.01em;}
+.logo .dot{width:9px;height:9px;border-radius:50%;background:var(--brand);display:inline-block;}
+nav.main-nav{display:flex;align-items:center;gap:28px;}
+nav.main-nav a{font-size:14.5px;font-weight:600;color:var(--ink-soft);padding:6px 0;position:relative;}
+nav.main-nav a:hover, nav.main-nav a.active{color:var(--ink);}
+.nav-dropdown{position:relative;}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-lg);padding:10px;width:280px;display:none;flex-direction:column;gap:2px;}
+.nav-dropdown:hover .nav-dropdown-panel, .nav-dropdown:focus-within .nav-dropdown-panel{display:flex;}
+.nav-dropdown-panel a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:14px;}
+.nav-dropdown-panel a:hover{background:var(--bg);}
+.header-actions{display:flex;align-items:center;gap:10px;}
+.icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:17px;position:relative;flex-shrink:0;}
+.icon-btn:hover{border-color:var(--ink);}
+.cart-count{position:absolute;top:-4px;right:-4px;background:var(--brand);color:#fff;font-size:10.5px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;}
+.search-form{display:flex;align-items:center;background:var(--bg-alt);border:1px solid var(--line);border-radius:999px;padding:4px 4px 4px 14px;gap:6px;}
+.search-form input{border:none;background:transparent;outline:none;font-family:inherit;font-size:13.5px;width:150px;}
+.search-form button{background:var(--ink);color:#fff;border:none;border-radius:999px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;}
+.hamburger{display:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg-alt);align-items:center;justify-content:center;}
+.mobile-menu{display:none;flex-direction:column;gap:4px;padding:10px 24px 20px;border-top:1px solid var(--line);}
+.mobile-menu a{padding:12px 6px;font-weight:600;font-size:15px;border-bottom:1px solid var(--line);}
+.mobile-menu .mm-sub{padding-left:16px;font-weight:500;color:var(--ink-soft);font-size:14px;}
+body.menu-open .mobile-menu{display:flex;}
+
+@media (max-width:900px){
+  nav.main-nav, .search-form{display:none;}
+  .hamburger{display:flex;}
+}
+
+/* Hero */
+.hero{padding:64px 0 40px;overflow:hidden;}
+.hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-dark);background:var(--brand-tint);padding:6px 12px;border-radius:999px;margin-bottom:18px;}
+.hero h1{font-size:clamp(38px,5vw,60px);max-width:640px;}
+.hero p.lead{font-size:18px;color:var(--ink-soft);max-width:480px;}
+.hero-ctas{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;}
+.hero-stack{position:relative;height:420px;}
+.stack-card{position:absolute;width:200px;height:266px;border-radius:20px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;justify-content:space-between;padding:20px;color:#fff;border:1px solid rgba(255,255,255,.25);}
+.stack-card .sc-icon{font-size:34px;}
+.stack-card .sc-title{font-family:'Fraunces',serif;font-weight:600;font-size:17px;line-height:1.2;}
+.stack-card .sc-tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;opacity:.85;}
+@media (max-width:900px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-stack{height:340px;margin-top:20px;}
+}
+
+/* Section headers */
+.section{padding:56px 0;}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:30px;flex-wrap:wrap;}
+.section-head h2{font-size:clamp(26px,3vw,36px);margin:0;}
+.section-head p{color:var(--ink-soft);margin:6px 0 0;max-width:520px;}
+.section-tag{font-family:'IBM Plex Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:8px;display:block;}
+
+/* Category cards */
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+@media (max-width:1050px){.cat-grid{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:640px){.cat-grid{grid-template-columns:repeat(2,1fr);}}
+.cat-card{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;display:flex;flex-direction:column;gap:14px;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;}
+.cat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent;}
+.cat-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;}
+.cat-card h3{font-size:17px;margin:0;}
+.cat-card p{font-size:13.5px;color:var(--ink-soft);margin:0;flex-grow:1;}
+.cat-card .cat-link{font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:5px;}
+
+.c-amber .cat-icon{background:var(--amber-tint);color:var(--amber-dark);}
+.c-sky .cat-icon{background:var(--sky-tint);color:var(--sky-dark);}
+.c-coral .cat-icon{background:var(--coral-tint);color:var(--coral-dark);}
+.c-teal .cat-icon{background:var(--teal-tint);color:var(--teal-dark);}
+.c-plum .cat-icon{background:var(--plum-tint);color:var(--plum-dark);}
+.c-amber .cat-link{color:var(--amber-dark);}
+.c-sky .cat-link{color:var(--sky-dark);}
+.c-coral .cat-link{color:var(--coral-dark);}
+.c-teal .cat-link{color:var(--teal-dark);}
+.c-plum .cat-link{color:var(--plum-dark);}
+
+/* Product grid & card */
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+@media (max-width:1050px){.product-grid{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:760px){.product-grid{grid-template-columns:repeat(2,1fr);gap:14px;}}
+@media (max-width:460px){.product-grid{grid-template-columns:1fr 1fr;}}
+
+.product-card{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .18s ease, transform .18s ease;}
+.product-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
+.cover{position:relative;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.cover .cover-icon{font-size:44px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.15));}
+.cover::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(115deg, rgba(255,255,255,.10) 0 2px, transparent 2px 22px);}
+.cover .cover-badges{position:absolute;top:10px;left:10px;display:flex;gap:6px;flex-wrap:wrap;}
+.cover .cover-cat{position:absolute;bottom:10px;left:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:#fff;background:rgba(0,0,0,.28);padding:3px 9px;border-radius:999px;}
+.product-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex-grow:1;}
+.product-body h3{font-size:15.5px;margin:0;font-weight:600;line-height:1.3;}
+.product-body .p-blurb{font-size:12.5px;color:var(--ink-soft);margin:0;flex-grow:1;}
+.price-row{display:flex;align-items:baseline;gap:8px;font-family:'IBM Plex Mono',monospace;}
+.price{font-size:16px;font-weight:600;}
+.price-mrp{font-size:12.5px;color:var(--ink-faint);text-decoration:line-through;}
+.card-actions{display:flex;gap:8px;margin-top:6px;}
+.card-actions .btn{flex:1;padding:10px 10px;font-size:13px;}
+
+.cover-amber{background:linear-gradient(155deg,var(--amber),#B4780E);}
+.cover-sky{background:linear-gradient(155deg,var(--sky),#1E5F86);}
+.cover-coral{background:linear-gradient(155deg,var(--coral),#A8324A);}
+.cover-teal{background:linear-gradient(155deg,var(--teal),#12503F);}
+.cover-plum{background:linear-gradient(155deg,var(--plum),#601846);}
+
+/* Why cards */
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+@media (max-width:900px){.feature-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:520px){.feature-grid{grid-template-columns:1fr;}}
+.feature-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;}
+.feature-card .f-num{font-family:'IBM Plex Mono',monospace;color:var(--ink-faint);font-size:12px;margin-bottom:14px;}
+.feature-card h3{font-size:17px;}
+.feature-card p{font-size:13.5px;color:var(--ink-soft);margin:0;}
+
+/* Newsletter */
+.newsletter{background:var(--ink);color:#fff;border-radius:var(--radius-lg);padding:56px 48px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+.newsletter h2{color:#fff;margin-bottom:8px;font-size:28px;}
+.newsletter p{color:#C9C8D6;margin:0;max-width:420px;}
+.newsletter-form{display:flex;gap:10px;flex-wrap:wrap;}
+.newsletter-form input{padding:13px 18px;border-radius:999px;border:none;font-family:inherit;font-size:14px;min-width:230px;}
+.newsletter-form button{background:var(--brand);color:#fff;border:none;padding:13px 24px;border-radius:999px;font-weight:600;}
+.newsletter-form button:hover{background:#5c50f0;}
+
+/* Breadcrumbs */
+.breadcrumbs{font-size:13px;color:var(--ink-faint);display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:20px;}
+.breadcrumbs a{color:var(--ink-soft);font-weight:600;}
+.breadcrumbs a:hover{color:var(--ink);}
+
+/* Shop layout */
+.shop-layout{display:grid;grid-template-columns:230px 1fr;gap:36px;align-items:start;}
+@media (max-width:860px){.shop-layout{grid-template-columns:1fr;}}
+.filter-box{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:sticky;top:96px;}
+.filter-box h4{font-size:12px;text-transform:uppercase;letter-spacing:.05em;font-family:'IBM Plex Mono',monospace;color:var(--ink-faint);margin:0 0 14px;}
+.filter-list{display:flex;flex-direction:column;gap:2px;margin-bottom:24px;}
+.filter-list a{padding:9px 10px;border-radius:8px;font-size:14px;font-weight:600;color:var(--ink-soft);}
+.filter-list a:hover{background:var(--bg);}
+.filter-list a.active{background:var(--brand-tint);color:var(--brand-dark);}
+.shop-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px;flex-wrap:wrap;}
+.shop-toolbar .count{font-size:13.5px;color:var(--ink-soft);}
+select#sortSelect{padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg-alt);font-family:inherit;font-size:13.5px;font-weight:600;}
+.empty-state{padding:60px 20px;text-align:center;color:var(--ink-soft);}
+
+/* Product detail */
+.pd-layout{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;}
+@media (max-width:860px){.pd-layout{grid-template-columns:1fr;gap:28px;}}
+.pd-gallery .cover{aspect-ratio:1/1;border-radius:var(--radius-lg);}
+.pd-gallery .cover .cover-icon{font-size:96px;}
+.pd-cat-chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:999px;margin-bottom:14px;}
+.pd-title{font-size:clamp(26px,3.4vw,36px);}
+.pd-price{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;display:flex;align-items:baseline;gap:12px;margin:14px 0 18px;}
+.pd-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:22px 0;font-size:13.5px;}
+.pd-meta div span{display:block;color:var(--ink-faint);font-size:11px;text-transform:uppercase;letter-spacing:.04em;font-family:'IBM Plex Mono',monospace;margin-bottom:3px;}
+.pd-actions{display:flex;gap:12px;margin:22px 0;flex-wrap:wrap;}
+.pd-actions .btn{min-width:160px;}
+.pd-section{border-top:1px solid var(--line);padding-top:22px;margin-top:22px;}
+.pd-section h3{font-size:17px;}
+.pd-list{padding-left:20px;margin:0;font-size:14.5px;color:var(--ink-soft);}
+.pd-list li{margin-bottom:6px;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:16px 0;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:14.5px;}
+.faq-a{display:none;padding:0 0 16px;color:var(--ink-soft);font-size:14px;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .faq-q .chev{transform:rotate(180deg);}
+
+/* Cart */
+.cart-table{width:100%;border-collapse:collapse;}
+.cart-table th{text-align:left;font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);}
+.cart-table td{padding:16px 8px;border-bottom:1px solid var(--line);vertical-align:middle;}
+.cart-item-info{display:flex;align-items:center;gap:14px;}
+.cart-thumb{width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0;}
+.qty-control{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden;}
+.qty-control button{width:30px;height:30px;background:var(--bg-alt);border:none;font-size:15px;}
+.qty-control button:hover{background:var(--bg);}
+.qty-control span{width:30px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13.5px;}
+.remove-link{color:var(--coral-dark);font-size:12.5px;font-weight:600;}
+.cart-layout{display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start;}
+@media (max-width:860px){.cart-layout{grid-template-columns:1fr;}}
+.summary-box{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:sticky;top:96px;}
+.summary-row{display:flex;justify-content:space-between;font-size:14.5px;margin-bottom:10px;color:var(--ink-soft);}
+.summary-row.total{color:var(--ink);font-weight:700;font-size:17px;border-top:1px solid var(--line);padding-top:14px;margin-top:14px;}
+
+/* Checkout */
+.checkout-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:44px;align-items:start;}
+@media (max-width:860px){.checkout-layout{grid-template-columns:1fr;}}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line);font-family:inherit;font-size:14px;background:var(--bg-alt);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media (max-width:520px){.form-row{grid-template-columns:1fr;}}
+.pay-options{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.pay-option{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:13px 14px;font-size:14px;font-weight:600;cursor:pointer;}
+.pay-option:has(input:checked){border-color:var(--ink);background:var(--paper);}
+.demo-notice{background:var(--amber-tint);color:var(--amber-dark);border:1px solid #EAD2A0;border-radius:var(--radius);padding:14px 16px;font-size:13.5px;margin-bottom:22px;display:flex;gap:10px;align-items:flex-start;}
+
+/* Order success */
+.success-box{text-align:center;max-width:560px;margin:0 auto;padding:20px 0;}
+.success-icon{width:76px;height:76px;border-radius:50%;background:var(--teal-tint);color:var(--teal-dark);display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 22px;}
+.download-list{text-align:left;background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);padding:8px;margin:26px 0;}
+.download-row{display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid var(--line);gap:12px;}
+.download-row:last-child{border-bottom:none;}
+.download-row .dl-name{font-weight:600;font-size:14px;}
+
+/* Static / legal pages */
+.prose{max-width:760px;}
+.prose h2{font-size:22px;margin-top:34px;}
+.prose p, .prose li{color:var(--ink-soft);font-size:15px;}
+.prose ul{padding-left:20px;}
+.page-hero{padding:52px 0 20px;}
+.page-hero h1{font-size:clamp(30px,4vw,44px);}
+.page-hero p{color:var(--ink-soft);font-size:16px;max-width:600px;}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:10px;}
+@media (max-width:760px){.about-grid{grid-template-columns:1fr;}}
+.value-card{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);padding:22px;}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+.contact-info-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-bottom:14px;}
+.contact-info-card h4{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;font-size:11.5px;letter-spacing:.04em;color:var(--ink-faint);margin:0 0 6px;}
+
+/* Footer */
+#site-footer{background:var(--ink);color:#C9C8D6;margin-top:70px;padding:56px 0 26px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:30px;}
+@media (max-width:860px){.footer-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:520px){.footer-grid{grid-template-columns:1fr;}}
+.footer-grid h4{color:#fff;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em;font-size:12px;margin:0 0 14px;}
+.footer-grid a{display:block;color:#ABAAB8;font-size:13.5px;padding:5px 0;}
+.footer-grid a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid #34333F;margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:#8B8A97;}
+.footer-logo{display:flex;align-items:center;gap:8px;font-family:'Fraunces',serif;font-weight:700;font-size:19px;color:#fff;margin-bottom:10px;}
+
+/* Toast */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:13px 22px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:all .25s ease;z-index:200;box-shadow:var(--shadow-lg);}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+@media (max-width:600px){
+  .newsletter{padding:36px 24px;flex-direction:column;align-items:flex-start;}
+  .section{padding:40px 0;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; scroll-behavior:auto !important;}
+}
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="header-inner">
+    <a href="#/" class="logo" data-nav><span class="dot"></span>DesignBits</a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="#/shop" data-nav>Shop</a>
+      <div class="nav-dropdown">
+        <a href="#/shop" data-nav>Categories ▾</a>
+        <div class="nav-dropdown-panel" id="navCatPanel"></div>
+      </div>
+      <a href="#/about" data-nav>About</a>
+      <a href="#/faq" data-nav>FAQ</a>
+      <a href="#/contact" data-nav>Contact</a>
+    </nav>
+    <div class="header-actions">
+      <form class="search-form" id="headerSearch" role="search">
+        <input type="search" name="q" placeholder="Search products…" aria-label="Search products">
+        <button type="submit" aria-label="Search">🔍</button>
+      </form>
+      <a href="#/cart" class="icon-btn" data-nav aria-label="Cart">🛒<span class="cart-count" id="cartCount">0</span></a>
+      <a href="#/shop" class="btn btn-primary btn-sm" data-nav style="display:none" id="shopNowBtn">Shop Now</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#/shop" data-nav>Shop</a>
+    <a href="#/ebookbyte" data-nav class="mm-sub">📚 EbookByte</a>
+    <a href="#/templatebits" data-nav class="mm-sub">🎨 TemplateBits</a>
+    <a href="#/cartoon-activity-books" data-nav class="mm-sub">🧒 Cartoon & Activity Books</a>
+    <a href="#/lifebyte" data-nav class="mm-sub">🧠 LifeByte</a>
+    <a href="#/celebrationbits" data-nav class="mm-sub">🎉 CelebrationBits</a>
+    <a href="#/about" data-nav>About DesignBits</a>
+    <a href="#/faq" data-nav>FAQ</a>
+    <a href="#/contact" data-nav>Contact</a>
+    <a href="#/cart" data-nav>Cart</a>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer id="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--brand);display:inline-block;"></span>DesignBits</div>
+        <p style="font-size:13.5px;max-width:260px;">Digital products for every part of life — e-books, templates, planners, kids' activity books and celebration cards, ready the moment you buy.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="#/shop" data-nav>All Products</a>
+        <a href="#/ebookbyte" data-nav>EbookByte</a>
+        <a href="#/templatebits" data-nav>TemplateBits</a>
+        <a href="#/cartoon-activity-books" data-nav>Cartoon & Activity</a>
+        <a href="#/lifebyte" data-nav>LifeByte</a>
+        <a href="#/celebrationbits" data-nav>CelebrationBits</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#/about" data-nav>About DesignBits</a>
+        <a href="#/contact" data-nav>Contact</a>
+        <a href="#/faq" data-nav>FAQ</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#/privacy-policy" data-nav>Privacy Policy</a>
+        <a href="#/terms-conditions" data-nav>Terms & Conditions</a>
+        <a href="#/refund-policy" data-nav>Refund Policy</a>
+        <a href="#/license" data-nav>Digital Product License</a>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <a href="#/cart" data-nav>Cart</a>
+        <a href="#/checkout" data-nav>Checkout</a>
+        <a href="#/order-success" data-nav>Order Status</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DesignBits. All rights reserved.</span>
+      <span>Made for curious, creative, busy people — everywhere.</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" role="status"></div>
+
+<script>
+/* =========================================================
+   DATA
+========================================================= */
+const CATEGORIES = [
+  {id:'ebookbyte', name:'EbookByte', icon:'📚', color:'amber', tagline:"Big ideas, explained simply.", desc:"Philosophy, self-improvement and thinker explainers — original guides, not the original books.", path:'ebookbyte'},
+  {id:'templatebits', name:'TemplateBits', icon:'🎨', color:'sky', tagline:"Editable designs, ready in minutes.", desc:"Birthday, social and invitation templates you can personalise without design skills.", path:'templatebits'},
+  {id:'cartoon-activity', name:'Cartoon & Activity Books', icon:'🧒', color:'coral', tagline:"Colouring, puzzles & playtime.", desc:"Printable activity, colouring and story books to keep kids happily busy.", path:'cartoon-activity-books'},
+  {id:'lifebyte', name:'LifeByte', icon:'🧠', color:'teal', tagline:"Structure for your days.", desc:"Planners, trackers and journals for a calmer, more organised life.", path:'lifebyte'},
+  {id:'celebrationbits', name:'CelebrationBits', icon:'🎉', color:'plum', tagline:"Cards for every occasion.", desc:"Printable cards and invitations for birthdays, weddings and festivals.", path:'celebrationbits'}
+];
+
+const PRODUCTS = [
+{slug:'25-osho-ideas-explained-simply', title:"25 Osho Ideas Explained Simply", cat:'ebookbyte', price:249, mrp:399, badge:'Bestseller', icon:'📚',
+ blurb:"Osho's boldest ideas on freedom, love and awareness, unpacked in plain language.",
+ desc:"An independent, original explainer that breaks down 25 of Osho's most talked-about ideas into short, easy-to-read chapters — for curious readers who want the substance without wading through dense philosophy. This is an original DesignBits publication and is not an official or endorsed release.",
+ includes:["25 short chapters","Key-idea summaries","Reflection questions after each chapter","Printable highlights page"],
+ format:"PDF (digital download)", pages:68, language:"English"},
+{slug:'stoicism-in-30-pages', title:"Stoicism in 30 Pages", cat:'ebookbyte', price:199, mrp:299, badge:'Sale', icon:'📖',
+ blurb:"The core ideas of Stoic philosophy, distilled into a weekend read.",
+ desc:"A compact, original guide to Stoic thinking — control, acceptance and calm under pressure — explained through everyday examples rather than academic language.",
+ includes:["10 core Stoic ideas","Daily practice prompts","Quote reference sheet"],
+ format:"PDF (digital download)", pages:30, language:"English"},
+{slug:'the-gita-simply-explained', title:"The Gita, Simply Explained", cat:'ebookbyte', price:299, badge:'New', icon:'📗',
+ blurb:"The Bhagavad Gita's core teachings, explained chapter by chapter in Hindi and English.",
+ desc:"An original bilingual explainer that walks through the Gita's central themes — duty, detachment and purpose — in accessible modern language, side by side in Hindi and English.",
+ includes:["18-chapter summary","Hindi + English text","Glossary of key terms"],
+ format:"PDF (digital download)", pages:80, language:"Hindi & English"},
+{slug:'atomic-habits-core-ideas-explained', title:"Atomic Habits — Core Ideas Explained", cat:'ebookbyte', price:199, badge:'New', icon:'🔁',
+ blurb:"The core habit-building framework, condensed into a fast, practical read.",
+ desc:"An independent summary and explainer covering the core mechanics of habit formation — cues, cravings, response and reward — with worksheets to apply each idea. Not affiliated with or endorsed by the original author or publisher.",
+ includes:["40-page explainer","4-law habit worksheet","Weekly tracker template"],
+ format:"PDF (digital download)", pages:40, language:"English"},
+{slug:'rumis-wisdom-20-ideas-explained', title:"Rumi's Wisdom: 20 Ideas Explained", cat:'ebookbyte', price:249, icon:'🌙',
+ blurb:"Twenty of Rumi's ideas on love, loss and belonging, explained simply.",
+ desc:"An original reader's guide to Rumi's most resonant ideas, translated from poetry into plain, reflective prose with space to journal your own thoughts.",
+ includes:["20 idea chapters","Journaling prompts","Curated verse references"],
+ format:"PDF (digital download)", pages:50, language:"English"},
+{slug:'nietzsche-without-the-headache', title:"Nietzsche Without the Headache", cat:'ebookbyte', price:279, icon:'🗿',
+ blurb:"Nietzsche's toughest ideas, explained without the jargon.",
+ desc:"A friendly, original walkthrough of Nietzsche's key concepts — the will to power, eternal recurrence and more — written for readers who want clarity, not a philosophy degree.",
+ includes:["12 concept chapters","Plain-language glossary","Discussion questions"],
+ format:"PDF (digital download)", pages:60, language:"English"},
+
+{slug:'editable-birthday-card-collection', title:"Editable Birthday Card Collection", cat:'templatebits', price:299, mrp:449, badge:'Sale', icon:'🎂',
+ blurb:"20 editable birthday card designs you can personalise in minutes.",
+ desc:"A set of 20 fully editable birthday card templates. Swap in your own text and photos, then print at home or share digitally.",
+ includes:["20 card designs","Editable text & photo layers","Print + digital-share versions"],
+ format:"Canva template link + PDF", language:"English"},
+{slug:'editable-invitation-template-pack', title:"Editable Invitation Template Pack", cat:'templatebits', price:249, icon:'✉️',
+ blurb:"All-purpose invitation templates for parties, get-togethers and events.",
+ desc:"Fifteen editable invitation layouts that work for birthdays, housewarmings and casual events — built for quick customisation with no design skills needed.",
+ includes:["15 invitation layouts","Editable in Canva","Print-ready PDF versions"],
+ format:"Canva template link + PDF", language:"English"},
+{slug:'instagram-post-template-bundle', title:"Instagram Post Template Bundle (50 Designs)", cat:'templatebits', price:499, badge:'Bestseller', icon:'📱',
+ blurb:"50 on-trend Instagram post templates for creators and small brands.",
+ desc:"A ready-to-use bundle of 50 Instagram post designs covering quotes, promos, announcements and carousels — built to be re-themed to any brand's colours in minutes.",
+ includes:["50 post templates","Story-size versions included","Editable colours & fonts"],
+ format:"Canva template link", language:"English"},
+{slug:'minimal-resume-cover-letter-templates', title:"Minimal Resume & Cover Letter Templates", cat:'templatebits', price:349, badge:'New', icon:'📄',
+ blurb:"Clean, recruiter-friendly resume and cover letter templates.",
+ desc:"A set of minimal, easy-to-scan resume and cover letter templates designed for readability, with matching colour variants and clear section structure.",
+ includes:["5 resume layouts","3 matching cover letters","Editable in Word & Canva"],
+ format:"DOCX + Canva template", language:"English"},
+{slug:'wedding-invitation-template-set', title:"Wedding Invitation Template Set", cat:'templatebits', price:599, icon:'💍',
+ blurb:"Elegant, editable wedding invitation and save-the-date templates.",
+ desc:"A coordinated wedding stationery set — invitations, save-the-dates and RSVP cards — in three colour palettes, ready to personalise.",
+ includes:["Invitation + save-the-date + RSVP","3 colour palettes","Print-ready PDF & Canva link"],
+ format:"Canva template link + PDF", language:"English"},
+{slug:'motivational-poster-design-templates', title:"Motivational Poster Design Templates", cat:'templatebits', price:299, icon:'🖼️',
+ blurb:"Printable motivational posters for home, office or classroom.",
+ desc:"Twelve editable poster designs with motivational typography, ready to print in A3 or A4 for a study corner, office wall or classroom.",
+ includes:["12 poster designs","A3 & A4 print sizes","Editable text in Canva"],
+ format:"Canva template link + PDF", language:"English"},
+
+{slug:'kids-coloring-activity-book', title:"Kids' Coloring & Activity Book", cat:'cartoon-activity', price:199, badge:'Bestseller', icon:'🖍️',
+ blurb:"40 pages of colouring, mazes and matching games for ages 4–8.",
+ desc:"A printable activity book packed with colouring pages, simple mazes and matching games, designed to keep young kids happily busy for hours.",
+ includes:["40 printable pages","Colouring + mazes + matching games","Ages 4–8"],
+ format:"PDF (printable)", pages:40, language:"English"},
+{slug:'jungle-animals-coloring-book', title:"Jungle Animals Coloring Book", cat:'cartoon-activity', price:179, icon:'🦁',
+ blurb:"25 jungle-animal colouring pages for little wildlife fans.",
+ desc:"A cheerful colouring book featuring 25 jungle animals, drawn in bold, easy-to-colour outlines that are kind to small hands and crayons.",
+ includes:["25 colouring pages","Bold, simple outlines","Ages 3–7"],
+ format:"PDF (printable)", pages:25, language:"English"},
+{slug:'dot-to-dot-puzzle-book-for-kids', title:"Dot-to-Dot & Puzzle Book for Kids", cat:'cartoon-activity', price:229, icon:'🔢',
+ blurb:"35 dot-to-dot, spot-the-difference and number puzzles.",
+ desc:"A mixed puzzle book with dot-to-dot drawings, spot-the-difference scenes and simple number puzzles, building focus and fine motor skills.",
+ includes:["35 puzzle pages","Answer key included","Ages 5–9"],
+ format:"PDF (printable)", pages:35, language:"English"},
+{slug:'alphabet-learning-activity-book', title:"Alphabet Learning Activity Book", cat:'cartoon-activity', price:249, badge:'New', icon:'🔤',
+ blurb:"A–Z tracing, colouring and matching activities for early learners.",
+ desc:"A friendly first-alphabet workbook with tracing letters, matching pictures to sounds, and colouring pages for each letter from A to Z.",
+ includes:["26 letter activity pages","Tracing + matching + colouring","Ages 3–6"],
+ format:"PDF (printable)", pages:30, language:"English"},
+{slug:'fun-maze-logic-puzzle-book', title:"Fun Maze & Logic Puzzle Book", cat:'cartoon-activity', price:199, icon:'🧩',
+ blurb:"30 mazes and logic puzzles for growing problem-solvers.",
+ desc:"A collection of mazes and simple logic puzzles that get progressively trickier, great for quiet-time activity that still feels like play.",
+ includes:["30 puzzle pages","Easy-to-hard progression","Ages 6–10"],
+ format:"PDF (printable)", pages:30, language:"English"},
+{slug:'the-little-explorer-story-book', title:"Cartoon Story Book: The Little Explorer", cat:'cartoon-activity', price:279, icon:'🧭',
+ blurb:"An illustrated bedtime story about a curious young explorer.",
+ desc:"A gentle, illustrated cartoon story following a young explorer's first adventure into the woods — written for read-aloud bedtime moments.",
+ includes:["24-page illustrated story","Read-aloud friendly text","Ages 4–8"],
+ format:"PDF (digital + printable)", pages:24, language:"English"},
+
+{slug:'30-day-habit-tracker', title:"30-Day Habit Tracker", cat:'lifebyte', price:149, badge:'Bestseller', icon:'✅',
+ blurb:"Track up to 6 habits a day for 30 days, with a weekly check-in.",
+ desc:"A simple, printable 30-day tracker for building habits that stick, with a weekly reflection page to notice patterns and adjust.",
+ includes:["30-day tracker grid","Weekly reflection page","Habit checklist","Progress page"],
+ format:"PDF (printable)", language:"English"},
+{slug:'daily-life-planner', title:"Daily Life Planner", cat:'lifebyte', price:249, badge:'Bestseller', icon:'🗓️',
+ blurb:"An undated daily planner for tasks, priorities and reflection.",
+ desc:"An undated daily planner layout with space for top priorities, a schedule block, and a short end-of-day reflection — start any day of the year.",
+ includes:["Undated daily pages","Priority + schedule blocks","End-of-day reflection"],
+ format:"PDF (printable)", language:"English"},
+{slug:'study-planner-undated', title:"Study Planner (Undated)", cat:'lifebyte', price:199, badge:'New', icon:'📝',
+ blurb:"Plan subjects, revision blocks and exam countdowns in one place.",
+ desc:"An undated study planner built for students — subject-wise revision tracking, weekly study blocks, and an exam countdown page.",
+ includes:["Weekly study planner","Subject tracker","Exam countdown page"],
+ format:"PDF (printable)", language:"English"},
+{slug:'goal-setting-workbook', title:"Goal Setting Workbook", cat:'lifebyte', price:299, icon:'🎯',
+ blurb:"A guided workbook for setting and breaking down meaningful goals.",
+ desc:"A step-by-step workbook that turns a big goal into a clear, quarterly action plan, with milestone tracking and monthly check-ins.",
+ includes:["Goal-breakdown worksheets","Quarterly milestone tracker","Monthly check-in pages"],
+ format:"PDF (printable)", language:"English"},
+{slug:'self-reflection-journal', title:"Self-Reflection Journal", cat:'lifebyte', price:249, icon:'🪞',
+ blurb:"Guided prompts for a few minutes of honest reflection each day.",
+ desc:"A guided journal with a short daily prompt, mood check-in and gratitude line — designed to take five minutes and build a steady reflection habit.",
+ includes:["60 guided journal pages","Daily mood check-in","Gratitude prompts"],
+ format:"PDF (printable)", language:"English"},
+{slug:'weekly-routine-planner', title:"Weekly Routine Planner", cat:'lifebyte', price:179, icon:'📆',
+ blurb:"Map out mornings, work blocks and evenings for a steadier week.",
+ desc:"A weekly routine template that blocks out mornings, work time and evenings, so your week has a rhythm instead of a scramble.",
+ includes:["Weekly routine grid","Morning + evening checklists","Time-block key"],
+ format:"PDF (printable)", language:"English"},
+
+{slug:'anniversary-card-set', title:"Anniversary Card Set", cat:'celebrationbits', price:199, icon:'💞',
+ blurb:"10 printable anniversary card designs for every kind of couple.",
+ desc:"A set of 10 printable anniversary cards, from playful to romantic, ready to print at home or send as a digital card.",
+ includes:["10 card designs","Print + digital-share versions","Editable message field"],
+ format:"PDF (printable)", language:"English"},
+{slug:'wedding-card-collection', title:"Wedding Card Collection", cat:'celebrationbits', price:349, badge:'Bestseller', icon:'💐',
+ blurb:"12 elegant wedding card designs for guests and couples alike.",
+ desc:"An elegant printable wedding card collection covering congratulations, guest wishes and thank-you notes, in a coordinated design style.",
+ includes:["12 card designs","Matching envelope card","Editable text"],
+ format:"PDF (printable)", language:"English"},
+{slug:'thank-you-card-pack', title:"Thank-You Card Pack", cat:'celebrationbits', price:149, icon:'🙏',
+ blurb:"15 printable thank-you cards for gifts, gestures and get-togethers.",
+ desc:"A versatile pack of 15 thank-you card designs suitable for weddings, birthdays, baby showers and everyday gratitude.",
+ includes:["15 card designs","Print-ready PDF","Editable message field"],
+ format:"PDF (printable)", language:"English"},
+{slug:'festival-greeting-cards-diwali-holi', title:"Festival Greeting Cards (Diwali & Holi)", cat:'celebrationbits', price:229, badge:'New', icon:'🪔',
+ blurb:"Printable and shareable greeting cards for Diwali and Holi.",
+ desc:"A festive set of Diwali and Holi greeting cards, ready to print for family or share digitally with friends and colleagues.",
+ includes:["12 festival card designs","Diwali + Holi sets","Print + digital-share versions"],
+ format:"PDF (printable + digital)", language:"English"},
+{slug:'printable-birthday-card-collection', title:"Printable Birthday Card Collection", cat:'celebrationbits', price:199, icon:'🎈',
+ blurb:"18 printable birthday cards for kids, friends and family.",
+ desc:"An 18-design birthday card collection covering playful, elegant and funny styles — print at home in minutes.",
+ includes:["18 card designs","Print-ready PDF","Editable message field"],
+ format:"PDF (printable)", language:"English"},
+{slug:'baby-shower-invitation-set', title:"Baby Shower Invitation Set", cat:'celebrationbits', price:279, icon:'👶',
+ blurb:"8 charming baby shower invitation designs, gender-neutral and themed.",
+ desc:"A set of 8 baby shower invitations, including gender-neutral and themed options, ready to personalise with your event details.",
+ includes:["8 invitation designs","Gender-neutral + themed options","Editable event details"],
+ format:"PDF (printable) + Canva link", language:"English"}
+];
+
+/* =========================================================
+   STATE & HELPERS
+========================================================= */
+let cart = {};      // slug -> qty
+let lastOrder = null;
+let searchQuery = '';
+
+const money = n => '₹' + n.toLocaleString('en-IN');
+const catById = id => CATEGORIES.find(c => c.id === id);
+const productBySlug = slug => PRODUCTS.find(p => p.slug === slug);
+const esc = s => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+function cartCount(){ return Object.values(cart).reduce((a,b)=>a+b,0); }
+function cartItems(){ return Object.entries(cart).map(([slug,qty]) => ({product:productBySlug(slug), qty})).filter(i=>i.product); }
+function cartTotal(){ return cartItems().reduce((sum,i)=>sum + i.product.price*i.qty, 0); }
+
+function addToCart(slug, qty=1){
+  cart[slug] = (cart[slug]||0) + qty;
+  updateCartBadge();
+  showToast('Added to cart — ' + productBySlug(slug).title);
+}
+function setQty(slug, qty){
+  if(qty <= 0){ delete cart[slug]; } else { cart[slug] = qty; }
+  updateCartBadge();
+  render();
+}
+function removeFromCart(slug){ delete cart[slug]; updateCartBadge(); render(); }
+function updateCartBadge(){ document.getElementById('cartCount').textContent = cartCount(); }
+
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+function badgeHtml(badge){
+  if(!badge) return '';
+  const cls = badge==='Bestseller'?'badge-bestseller':badge==='New'?'badge-new':'badge-sale';
+  return `<span class="badge ${cls}">${badge}</span>`;
+}
+
+function coverHtml(p, big){
+  const cat = catById(p.cat);
+  return `<div class="cover cover-${cat.color}">
+      <div class="cover-badges">${badgeHtml(p.badge)}</div>
+      <span class="cover-icon" aria-hidden="true">${p.icon}</span>
+      <span class="cover-cat">${esc(cat.name)}</span>
+    </div>`;
+}
+
+function productCardHtml(p){
+  const cat = catById(p.cat);
+  return `<article class="product-card">
+    <a href="#/product/${p.slug}" data-nav aria-label="${esc(p.title)}">${coverHtml(p)}</a>
+    <div class="product-body">
+      <span class="badge badge-demo" style="align-self:flex-start;">Sample product</span>
+      <h3><a href="#/product/${p.slug}" data-nav>${esc(p.title)}</a></h3>
+      <p class="p-blurb">${esc(p.blurb)}</p>
+      <div class="price-row">
+        <span class="price">${money(p.price)}</span>
+        ${p.mrp ? `<span class="price-mrp">${money(p.mrp)}</span>` : ''}
+      </div>
+      <div class="card-actions">
+        <a href="#/product/${p.slug}" data-nav class="btn btn-ghost">View</a>
+        <button class="btn btn-primary" data-add="${p.slug}">Add to Cart</button>
+      </div>
+    </div>
+  </article>`;
+}
+
+/* =========================================================
+   ROUTER
+========================================================= */
+function parseHash(){
+  let h = location.hash.replace(/^#\/?/, '');
+  const [pathPart, queryPart] = h.split('?');
+  const parts = pathPart.split('/').filter(Boolean);
+  const q = {};
+  if(queryPart){ new URLSearchParams(queryPart).forEach((v,k)=>q[k]=v); }
+  return {parts, q};
+}
+
+function navigate(hash){
+  if(location.hash === hash){ render(); } else { location.hash = hash; }
+  window.scrollTo({top:0, behavior:'instant' in document.documentElement.style ? 'instant':'auto'});
+}
+
+window.addEventListener('hashchange', render);
+window.addEventListener('DOMContentLoaded', () => {
+  buildNavDropdown();
+  render();
+});
+
+function buildNavDropdown(){
+  document.getElementById('navCatPanel').innerHTML = CATEGORIES.map(c =>
+    `<a href="#/${c.path}" data-nav>${c.icon} ${esc(c.name)}</a>`).join('');
+}
+
+/* =========================================================
+   PAGE RENDERERS
+========================================================= */
+function render(){
+  const {parts, q} = parseHash();
+  const app = document.getElementById('app');
+  let html = '';
+  const route = parts[0] || '';
+
+  document.body.classList.remove('menu-open');
+  updateCartBadge();
+
+  if(route === '' ){
+    html = pageHome();
+  } else if(route === 'shop'){
+    if(q.q) searchQuery = q.q;
+    html = pageShop(null);
+  } else if(CATEGORIES.some(c=>c.path===route)){
+    html = pageShop(CATEGORIES.find(c=>c.path===route).id);
+  } else if(route === 'product' && parts[1]){
+    html = pageProduct(parts[1]);
+  } else if(route === 'cart'){
+    html = pageCart();
+  } else if(route === 'checkout'){
+    html = pageCheckout();
+  } else if(route === 'order-success'){
+    html = pageOrderSuccess();
+  } else if(route === 'about'){
+    html = pageAbout();
+  } else if(route === 'contact'){
+    html = pageContact();
+  } else if(route === 'faq'){
+    html = pageFaq();
+  } else if(route === 'privacy-policy'){
+    html = pageLegal('privacy');
+  } else if(route === 'terms-conditions'){
+    html = pageLegal('terms');
+  } else if(route === 'refund-policy'){
+    html = pageLegal('refund');
+  } else if(route === 'license'){
+    html = pageLegal('license');
+  } else {
+    html = page404();
+  }
+
+  app.innerHTML = html;
+  setActiveNav(route);
+  window.scrollTo(0,0);
+  setTitle(route, parts);
+  attachPageBehaviors(route);
+}
+
+function setTitle(route, parts){
+  let t = 'DesignBits — Digital Products for Every Part of Life';
+  if(route === 'shop') t = 'Shop All Digital Products — DesignBits';
+  else if(route === 'product' && parts[1]){ const p = productBySlug(parts[1]); if(p) t = p.title + ' — DesignBits'; }
+  else if(CATEGORIES.some(c=>c.path===route)){ t = catById(CATEGORIES.find(c=>c.path===route).id).name + ' — DesignBits'; }
+  else if(route==='about') t = 'About DesignBits';
+  else if(route==='contact') t = 'Contact DesignBits';
+  else if(route==='faq') t = 'FAQ — DesignBits';
+  else if(route==='cart') t = 'Your Cart — DesignBits';
+  else if(route==='checkout') t = 'Checkout — DesignBits';
+  document.title = t;
+}
+
+function setActiveNav(route){
+  document.querySelectorAll('nav.main-nav > a').forEach(a=>a.classList.remove('active'));
+}
+
+/* ---------- Home ---------- */
+function pageHome(){
+  const bestsellers = PRODUCTS.filter(p=>p.badge==='Bestseller').slice(0,8);
+  const trending = PRODUCTS.filter(p=>p.badge==='New').concat(PRODUCTS.slice(0,4)).slice(0,8);
+  const stackCards = [
+    {p:PRODUCTS[0], rot:-9, top:10, left:10},
+    {p:PRODUCTS.find(p=>p.cat==='templatebits'), rot:6, top:60, left:150},
+    {p:PRODUCTS.find(p=>p.cat==='lifebyte'), rot:-3, top:130, left:40},
+  ];
+  return `
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="eyebrow">Digital Products for Every Part of Life</span>
+        <h1>Ideas. Designs. Products. Made Digital.</h1>
+        <p class="lead">Discover thoughtfully designed e-books, templates, planners, kids' activity books and digital products made to make everyday life easier and more creative.</p>
+        <div class="hero-ctas">
+          <a href="#/shop" data-nav class="btn btn-primary">Explore Products</a>
+          <a href="#shopCategories" class="btn btn-outline">Browse Categories</a>
+        </div>
+      </div>
+      <div class="hero-stack" aria-hidden="true">
+        ${stackCards.map((s,i)=>`<div class="stack-card cover-${catById(s.p.cat).color}" style="top:${s.top}px; left:${s.left}px; transform:rotate(${s.rot}deg); z-index:${i}">
+            <div class="sc-tag">${esc(catById(s.p.cat).name)}</div>
+            <div class="sc-icon">${s.p.icon}</div>
+            <div class="sc-title">${esc(s.p.title)}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="shopCategories">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-tag">Five categories, one shelf</span><h2>Explore DesignBits</h2></div>
+        <p>Every category is colour-coded, so you always know where you are.</p>
+      </div>
+      <div class="cat-grid">
+        ${CATEGORIES.map(c=>`
+          <a href="#/${c.path}" data-nav class="cat-card c-${c.color}">
+            <div class="cat-icon">${c.icon}</div>
+            <h3>${esc(c.name)}</h3>
+            <p>${esc(c.tagline)}</p>
+            <span class="cat-link">Explore →</span>
+          </a>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-tag">Loved by customers</span><h2>Best Sellers</h2></div>
+        <a href="#/shop" data-nav class="btn btn-ghost btn-sm">View all →</a>
+      </div>
+      <div class="product-grid">${bestsellers.map(productCardHtml).join('')}</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-tag">Why DesignBits</span><h2>Built to actually get used</h2></div>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card"><div class="f-num">01</div><h3>Instant Download</h3><p>Get your digital product quickly after purchase — no waiting, no shipping.</p></div>
+        <div class="feature-card"><div class="f-num">02</div><h3>Made With Purpose</h3><p>Useful products designed for real everyday needs, not filler content.</p></div>
+        <div class="feature-card"><div class="f-num">03</div><h3>Affordable</h3><p>Digital products without unnecessary costs — priced to actually buy.</p></div>
+        <div class="feature-card"><div class="f-num">04</div><h3>For Every Part of Life</h3><p>Knowledge, creativity, productivity and celebrations — all in one place.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="section-tag">Just added</span><h2>New & Trending</h2></div>
+      </div>
+      <div class="product-grid">${trending.map(productCardHtml).join('')}</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="newsletter">
+        <div>
+          <h2>Get the latest DesignBits.</h2>
+          <p>New digital products, useful resources and special offers — straight to your inbox.</p>
+        </div>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" required placeholder="you@example.com" aria-label="Email address">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  `;
+}
+
+/* ---------- Shop / Category ---------- */
+function pageShop(catFilter){
+  const cat = catFilter ? catById(catFilter) : null;
+  const sortParam = document.getElementById('sortSelect') ? document.getElementById('sortSelect').value : 'newest';
+  let list = PRODUCTS.filter(p => !catFilter || p.cat === catFilter);
+  if(searchQuery){
+    const s = searchQuery.toLowerCase();
+    list = list.filter(p => p.title.toLowerCase().includes(s) || p.blurb.toLowerCase().includes(s));
+  }
+  list = sortProducts(list, sortParam);
+
+  const crumb = cat ? `<a href="#/shop" data-nav>Shop</a><span>/</span><span>${esc(cat.name)}</span>` : `<span>Shop</span>`;
+
+  return `
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/" data-nav>Home</a><span>/</span>${crumb}</nav>
+      <h1>${cat ? cat.icon + ' ' + esc(cat.name) : 'Shop All Products'}</h1>
+      <p>${cat ? esc(cat.desc) : "Browse every digital product on DesignBits — e-books, templates, planners, activity books and celebration cards."}</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0;">
+    <div class="wrap shop-layout">
+      <aside class="filter-box">
+        <h4>Categories</h4>
+        <div class="filter-list">
+          <a href="#/shop" data-nav class="${!cat?'active':''}">All Products</a>
+          ${CATEGORIES.map(c=>`<a href="#/${c.path}" data-nav class="${cat && cat.id===c.id?'active':''}">${c.icon} ${esc(c.name)}</a>`).join('')}
+        </div>
+        <h4>Need help?</h4>
+        <p style="font-size:13px;color:var(--ink-soft);margin:0 0 10px;">Not sure what fits? Check our FAQ or reach out.</p>
+        <a href="#/faq" data-nav class="btn btn-ghost btn-sm btn-block">Visit FAQ</a>
+      </aside>
+      <div>
+        <div class="shop-toolbar">
+          <span class="count">${list.length} product${list.length===1?'':'s'}${searchQuery?` for "${esc(searchQuery)}"`:''}</span>
+          <select id="sortSelect" data-sort>
+            <option value="newest" ${sortParam==='newest'?'selected':''}>Sort: Newest</option>
+            <option value="price-asc" ${sortParam==='price-asc'?'selected':''}>Price: Low to High</option>
+            <option value="price-desc" ${sortParam==='price-desc'?'selected':''}>Price: High to Low</option>
+            <option value="popularity" ${sortParam==='popularity'?'selected':''}>Sort: Popularity</option>
+          </select>
+        </div>
+        ${list.length ? `<div class="product-grid">${list.map(productCardHtml).join('')}</div>` :
+          `<div class="empty-state"><h3>No products found</h3><p>Try a different search term or browse another category.</p><a href="#/shop" data-nav class="btn btn-primary">Clear filters</a></div>`}
+      </div>
+    </div>
+  </section>`;
+}
+
+function sortProducts(list, mode){
+  const copy = [...list];
+  if(mode==='price-asc') copy.sort((a,b)=>a.price-b.price);
+  else if(mode==='price-desc') copy.sort((a,b)=>b.price-a.price);
+  else if(mode==='popularity') copy.sort((a,b)=>(b.badge==='Bestseller'?1:0)-(a.badge==='Bestseller'?1:0));
+  else copy.sort((a,b)=>(b.badge==='New'?1:0)-(a.badge==='New'?1:0));
+  return copy;
+}
+
+/* ---------- Product Detail ---------- */
+function pageProduct(slug){
+  const p = productBySlug(slug);
+  if(!p) return page404();
+  const cat = catById(p.cat);
+  const related = PRODUCTS.filter(x=>x.cat===p.cat && x.slug!==p.slug).slice(0,4);
+  const faqs = [
+    ["How do I get the file after buying?", "Right after checkout you'll land on an order confirmation page with instant download links, and we also send a copy to your email."],
+    ["Can I print this at home?", "Yes — every DesignBits product is provided as a print-ready file. Formats and page sizes are listed in the product details above."],
+    ["Can I edit the content?", "Editable templates open in Canva or the listed editor. E-books, planners and activity books are ready-to-use PDFs and aren't editable."],
+    ["Is this a one-time payment?", "Yes, every DesignBits product is a single one-time purchase with lifetime access to the files you download."]
+  ];
+  return `
+  <section class="section" style="padding-top:28px;">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="#/" data-nav>Home</a><span>/</span>
+        <a href="#/shop" data-nav>Shop</a><span>/</span>
+        <a href="#/${cat.path}" data-nav>${esc(cat.name)}</a><span>/</span>
+        <span>${esc(p.title)}</span>
+      </nav>
+      <div class="pd-layout">
+        <div class="pd-gallery">${coverHtml(p)}</div>
+        <div>
+          <a href="#/${cat.path}" data-nav class="pd-cat-chip" style="background:var(--${cat.color}-tint);color:var(--${cat.color}-dark);">${cat.icon} ${esc(cat.name)}</a>
+          <h1 class="pd-title">${esc(p.title)}</h1>
+          <p style="color:var(--ink-soft);font-size:15.5px;">${esc(p.blurb)}</p>
+          <div class="pd-price">
+            <span>${money(p.price)}</span>
+            ${p.mrp ? `<span class="price-mrp" style="font-size:16px;">${money(p.mrp)}</span><span class="badge badge-sale">${Math.round((1-p.price/p.mrp)*100)}% OFF</span>` : ''}
+          </div>
+          <div class="pd-actions">
+            <button class="btn btn-primary" data-add="${p.slug}">Add to Cart</button>
+            <button class="btn btn-outline" data-buy="${p.slug}">Buy Now</button>
+          </div>
+          <div class="pd-meta">
+            <div><span>Format</span>${esc(p.format)}</div>
+            <div><span>Language</span>${esc(p.language)}</div>
+            ${p.pages?`<div><span>Pages</span>${p.pages} pages</div>`:''}
+            <div><span>Delivery</span>Instant download</div>
+          </div>
+          <div class="pd-section">
+            <h3>Description</h3>
+            <p style="color:var(--ink-soft);font-size:14.5px;">${esc(p.desc)}</p>
+          </div>
+          <div class="pd-section">
+            <h3>What's included</h3>
+            <ul class="pd-list">${p.includes.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>
+          </div>
+          <div class="pd-section">
+            <h3>License & usage</h3>
+            <p style="color:var(--ink-soft);font-size:14.5px;">For personal use, including printing for yourself, your family, your students or your own small business. Resale or redistribution of the files themselves is not permitted. Full details on our <a href="#/license" data-nav style="text-decoration:underline;">Digital Product License</a> page.</p>
+          </div>
+          <div class="pd-section">
+            <h3>Frequently asked questions</h3>
+            <div>${faqs.map((f,i)=>faqItemHtml(f[0],f[1],'pd'+i)).join('')}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  ${related.length ? `
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><div><span class="section-tag">More from ${esc(cat.name)}</span><h2>Related products</h2></div></div>
+      <div class="product-grid">${related.map(productCardHtml).join('')}</div>
+    </div>
+  </section>` : ''}
+  `;
+}
+
+function faqItemHtml(q,a,idPrefix){
+  return `<div class="faq-item" data-faq>
+    <button class="faq-q" data-faq-toggle>${esc(q)}<span class="chev" aria-hidden="true">▾</span></button>
+    <div class="faq-a">${a}</div>
+  </div>`;
+}
+
+/* ---------- Cart ---------- */
+function pageCart(){
+  const items = cartItems();
+  if(!items.length){
+    return `<section class="section">
+      <div class="wrap">
+        <div class="empty-state">
+          <h2 style="font-family:'Fraunces',serif;">Your cart is empty</h2>
+          <p>Looks like you haven't added any digital products yet.</p>
+          <a href="#/shop" data-nav class="btn btn-primary">Explore Products</a>
+        </div>
+      </div>
+    </section>`;
+  }
+  const total = cartTotal();
+  return `
+  <section class="page-hero"><div class="wrap"><h1>Your Cart</h1><p>${items.length} item${items.length===1?'':'s'} ready for checkout.</p></div></section>
+  <section class="section" style="padding-top:0;">
+    <div class="wrap cart-layout">
+      <div>
+        <table class="cart-table">
+          <thead><tr><th>Product</th><th>Price</th><th>Qty</th><th>Subtotal</th><th></th></tr></thead>
+          <tbody>
+            ${items.map(({product,qty})=>{const cat=catById(product.cat); return `
+            <tr>
+              <td><div class="cart-item-info"><div class="cart-thumb cover-${cat.color}">${product.icon}</div>
+                <div><a href="#/product/${product.slug}" data-nav style="font-weight:600;font-size:14px;">${esc(product.title)}</a><div style="font-size:12px;color:var(--ink-faint);">${esc(cat.name)}</div></div>
+              </div></td>
+              <td class="mono">${money(product.price)}</td>
+              <td><div class="qty-control">
+                <button data-qty-minus="${product.slug}" aria-label="Decrease quantity">–</button>
+                <span>${qty}</span>
+                <button data-qty-plus="${product.slug}" aria-label="Increase quantity">+</button>
+              </div></td>
+              <td class="mono">${money(product.price*qty)}</td>
+              <td><button class="remove-link" data-remove="${product.slug}">Remove</button></td>
+            </tr>`;}).join('')}
+          </tbody>
+        </table>
+        <a href="#/shop" data-nav class="btn btn-ghost" style="margin-top:20px;">← Continue Shopping</a>
+      </div>
+      <div class="summary-box">
+        <h3 style="font-size:17px;">Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span class="mono">${money(total)}</span></div>
+        <div class="summary-row"><span>Taxes</span><span class="mono">Calculated at checkout</span></div>
+        <div class="summary-row total"><span>Total</span><span class="mono">${money(total)}</span></div>
+        <a href="#/checkout" data-nav class="btn btn-primary btn-block" style="margin-top:16px;">Proceed to Checkout</a>
+        <p style="font-size:12px;color:var(--ink-faint);margin:14px 0 0;">🔒 Secure demo checkout — no real payment is processed.</p>
+      </div>
+    </div>
+  </section>`;
+}
+
+/* ---------- Checkout ---------- */
+function pageCheckout(){
+  const items = cartItems();
+  if(!items.length){
+    return `<section class="section"><div class="wrap"><div class="empty-state"><h2 style="font-family:'Fraunces',serif;">Nothing to check out</h2><p>Add a few products to your cart first.</p><a href="#/shop" data-nav class="btn btn-primary">Explore Products</a></div></div></section>`;
+  }
+  const total = cartTotal();
+  return `
+  <section class="page-hero"><div class="wrap"><nav class="breadcrumbs"><a href="#/cart" data-nav>Cart</a><span>/</span><span>Checkout</span></nav><h1>Checkout</h1></div></section>
+  <section class="section" style="padding-top:0;">
+    <div class="wrap checkout-layout">
+      <div>
+        <div class="demo-notice">⚠️ <div><strong>Demo checkout.</strong> This flow is a working preview of the purchase experience — no real payment gateway is connected yet, and no money will be charged. It's built so a provider like Razorpay, Stripe or PayPal can be plugged in later.</div></div>
+        <form id="checkoutForm">
+          <h3 style="font-size:16px;">Contact details</h3>
+          <div class="form-group"><label for="ckName">Full name</label><input id="ckName" required placeholder="Jordan Lee"></div>
+          <div class="form-row">
+            <div class="form-group"><label for="ckEmail">Email address</label><input id="ckEmail" type="email" required placeholder="you@example.com"></div>
+            <div class="form-group"><label for="ckPhone">Phone number</label><input id="ckPhone" type="tel" placeholder="+91 90000 00000"></div>
+          </div>
+          <h3 style="font-size:16px;margin-top:22px;">Payment method (demo)</h3>
+          <div class="pay-options">
+            <label class="pay-option"><input type="radio" name="pay" value="upi" checked> UPI (Google Pay / PhonePe / Paytm)</label>
+            <label class="pay-option"><input type="radio" name="pay" value="card"> Credit / Debit Card</label>
+            <label class="pay-option"><input type="radio" name="pay" value="paypal"> PayPal (international)</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Place Demo Order — ${money(total)}</button>
+        </form>
+      </div>
+      <div class="summary-box">
+        <h3 style="font-size:17px;">Order Summary</h3>
+        ${items.map(({product,qty})=>`<div class="summary-row"><span>${esc(product.title)} × ${qty}</span><span class="mono">${money(product.price*qty)}</span></div>`).join('')}
+        <div class="summary-row total"><span>Total</span><span class="mono">${money(total)}</span></div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function processCheckout(e){
+  e.preventDefault();
+  const items = cartItems();
+  lastOrder = {
+    id: 'DB' + Math.floor(100000 + Math.random()*900000),
+    items,
+    total: cartTotal(),
+    email: document.getElementById('ckEmail').value
+  };
+  cart = {};
+  updateCartBadge();
+  navigate('#/order-success');
+}
+
+/* ---------- Order Success ---------- */
+function pageOrderSuccess(){
+  if(!lastOrder){
+    return `<section class="section"><div class="wrap"><div class="empty-state"><h2 style="font-family:'Fraunces',serif;">No recent order found</h2><p>Place an order to see your downloads here.</p><a href="#/shop" data-nav class="btn btn-primary">Explore Products</a></div></div></section>`;
+  }
+  return `
+  <section class="section">
+    <div class="wrap">
+      <div class="success-box">
+        <div class="success-icon">✓</div>
+        <span class="badge badge-demo" style="margin-bottom:10px;">Demo order — no payment was charged</span>
+        <h1>Thank you! Your order is ready.</h1>
+        <p style="color:var(--ink-soft);">Order <strong class="mono">${lastOrder.id}</strong> — a receipt and download links have been "sent" to <strong>${esc(lastOrder.email||'your email')}</strong>.</p>
+        <div class="download-list">
+          ${lastOrder.items.map(({product,qty})=>`
+            <div class="download-row">
+              <div><div class="dl-name">${esc(product.title)} ${qty>1?`× ${qty}`:''}</div><div style="font-size:12px;color:var(--ink-faint);">${esc(product.format)}</div></div>
+              <button class="btn btn-ghost btn-sm" data-demo-download>Download</button>
+            </div>`).join('')}
+        </div>
+        <a href="#/shop" data-nav class="btn btn-primary">Continue Shopping</a>
+      </div>
+    </div>
+  </section>`;
+}
+
+/* ---------- About ---------- */
+function pageAbout(){
+  return `
+  <section class="page-hero"><div class="wrap"><nav class="breadcrumbs"><a href="#/" data-nav>Home</a><span>/</span><span>About</span></nav>
+    <h1>About DesignBits</h1><p>Digital Products for Every Part of Life.</p></div></section>
+  <section class="section" style="padding-top:0;">
+    <div class="wrap prose">
+      <p>DesignBits started with a simple observation: the useful, well-made digital products we all rely on — a good planner, a clear explainer, a decent card template — were scattered across a hundred different corners of the internet, most of them looking exactly the same.</p>
+      <p>So we built one place for them. DesignBits is a digital products store, not a design agency — we don't take client briefs or freelance commissions. Instead, we design and sell ready-made e-books, templates, planners, activity books and celebration cards that you can buy once and use immediately.</p>
+      <h2>What we believe</h2>
+      <div class="about-grid">
+        <div class="value-card"><h3 style="font-size:16px;">Useful over trendy</h3><p style="font-size:13.5px;">Every product has to solve an actual, everyday problem — not just look nice in a preview image.</p></div>
+        <div class="value-card"><h3 style="font-size:16px;">Simple to use</h3><p style="font-size:13.5px;">No confusing licenses, no complicated software. Buy it, download it, use it.</p></div>
+        <div class="value-card"><h3 style="font-size:16px;">Honest pricing</h3><p style="font-size:13.5px;">Premium quality shouldn't mean premium prices — we keep things affordable by design.</p></div>
+      </div>
+      <h2>A note on our explainer e-books</h2>
+      <p>Some EbookByte titles present original, independent explanations of well-known ideas and thinkers. These are DesignBits' own writing and interpretation — they are not official publications, and they don't imply endorsement by, or affiliation with, the original authors, publishers or estates.</p>
+      <h2>Where we're headed</h2>
+      <p>We're building DesignBits to grow from a focused digital-products shop into a larger marketplace — more categories, more creators, and eventually accounts, wishlists and creator partnerships. What won't change is the focus: discover, buy, download, use.</p>
+    </div>
+  </section>`;
+}
+
+/* ---------- Contact ---------- */
+function pageContact(){
+  return `
+  <section class="page-hero"><div class="wrap"><nav class="breadcrumbs"><a href="#/" data-nav>Home</a><span>/</span><span>Contact</span></nav>
+    <h1>Get in touch</h1><p>Questions about a product, an order, or a partnership? We'd love to hear from you.</p></div></section>
+  <section class="section" style="padding-top:0;">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="contact-info-card"><h4>Email</h4><p style="margin:0;">hello@designbits.example</p></div>
+        <div class="contact-info-card"><h4>Support hours</h4><p style="margin:0;">Monday – Saturday, 10am – 6pm IST</p></div>
+        <div class="contact-info-card"><h4>Response time</h4><p style="margin:0;">We typically reply within 1 business day.</p></div>
+      </div>
+      <form id="contactForm">
+        <div class="form-group"><label for="cName">Name</label><input id="cName" required placeholder="Your name"></div>
+        <div class="form-group"><label for="cEmail">Email</label><input id="cEmail" type="email" required placeholder="you@example.com"></div>
+        <div class="form-group"><label for="cSubject">Subject</label><input id="cSubject" placeholder="Order question, product idea, partnership…"></div>
+        <div class="form-group"><label for="cMessage">Message</label><textarea id="cMessage" rows="5" required placeholder="How can we help?"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+      </form>
+    </div>
+  </section>`;
+}
+
+/* ---------- FAQ ---------- */
+function pageFaq(){
+  const groups = [
+    {h:"Orders & Delivery", items:[
+      ["How quickly do I get my product?", "Instantly. Once your order is placed, you're taken straight to a download page and we also email you the links."],
+      ["Do you ship anything physically?", "No — every DesignBits product is 100% digital. Nothing is ever mailed to you."],
+      ["I lost my download link. What now?", "Reach out on the Contact page with your order number and email, and we'll resend your links."]
+    ]},
+    {h:"Products & Usage", items:[
+      ["What file formats do you sell?", "Mostly PDF for e-books, planners and printables, plus Canva template links for editable designs — each product page lists the exact format."],
+      ["Can I edit e-books or planners?", "E-books, planners and activity books are ready-to-use PDFs. Items labelled as templates are editable in Canva or the listed tool."],
+      ["Can I resell a DesignBits product?", "No. Our license covers personal, family, classroom or small-business use — not resale or redistribution of the files. See our Digital Product License page."]
+    ]},
+    {h:"Payments & Refunds", items:[
+      ["What payment methods do you accept?", "The checkout supports UPI, cards and PayPal for international customers. Note: this is currently a demo checkout — no live payment gateway is connected yet."],
+      ["Can I get a refund?", "Because files are delivered instantly, refunds are handled case by case. Full details are on our Refund Policy page."],
+      ["Is my payment information safe?", "We never store full card details ourselves — payments are designed to be handled entirely by a certified payment gateway once one is connected."]
+    ]}
+  ];
+  return `
+  <section class="page-hero"><div class="wrap"><nav class="breadcrumbs"><a href="#/" data-nav>Home</a><span>/</span><span>FAQ</span></nav>
+    <h1>Frequently asked questions</h1><p>Everything you need to know about shopping on DesignBits.</p></div></section>
+  <section class="section" style="padding-top:0;">
+    <div class="wrap prose" style="max-width:760px;">
+      ${groups.map(g=>`<h2>${esc(g.h)}</h2><div>${g.items.map((it,i)=>faqItemHtml(it[0],it[1])).join('')}</div>`).join('')}
+    </div>
+  </section>`;
+}
+
+/* ---------- Legal pages ---------- */
+function pageLegal(kind){
+  const map = {
+    privacy: {title:"Privacy Policy", body:`
+      <p>Last updated: August 2026. This Privacy Policy explains what information DesignBits collects when you use this website and how it is used.</p>
+      <h2>Information we collect</h2>
+      <p>When you place an order or contact us, we collect basic details such as your name, email address and, if provided, phone number. If a payment gateway is connected in the future, payment processing will be handled by that certified third-party provider — DesignBits does not store full card numbers.</p>
+      <h2>How we use information</h2>
+      <ul><li>To deliver the digital products you purchase</li><li>To send order confirmations and support responses</li><li>To send optional newsletter updates, if you subscribe</li><li>To improve the website and product catalog</li></ul>
+      <h2>Cookies</h2>
+      <p>This demo site does not set tracking cookies. A production version may use essential cookies for cart functionality and, with consent, analytics cookies to understand site usage.</p>
+      <h2>Your choices</h2>
+      <p>You can unsubscribe from the newsletter at any time, and you can contact us to request that your personal data be deleted, subject to any records we're legally required to keep.</p>
+      <h2>Contact</h2>
+      <p>Questions about this policy can be sent to hello@designbits.example.</p>`},
+    terms: {title:"Terms & Conditions", body:`
+      <p>Last updated: August 2026. By using the DesignBits website and purchasing our products, you agree to the following terms.</p>
+      <h2>Use of the website</h2>
+      <p>DesignBits products are for personal, family, educational or small-business use as described in our Digital Product License. You agree not to misuse the website, attempt to disrupt its operation, or resell our files without permission.</p>
+      <h2>Products & pricing</h2>
+      <p>Prices are listed in Indian Rupees (₹) and may change without prior notice. Sample products marked as demo content are illustrative and may be updated as the catalog grows.</p>
+      <h2>Digital delivery</h2>
+      <p>All products are delivered digitally. Once a purchase is completed and files are made available, the order is considered fulfilled.</p>
+      <h2>Limitation of liability</h2>
+      <p>DesignBits products are provided "as is." We aren't liable for indirect damages arising from the use of our digital products or website.</p>
+      <h2>Changes to these terms</h2>
+      <p>We may update these terms from time to time; continued use of the site means you accept the current version.</p>`},
+    refund: {title:"Refund Policy", body:`
+      <p>Last updated: August 2026. Because DesignBits products are delivered instantly as digital files, our refund policy works a little differently from physical goods.</p>
+      <h2>When a refund may apply</h2>
+      <ul><li>The file you received is corrupted or does not match the product description</li><li>You were charged more than once for the same order</li><li>The wrong product was delivered due to a checkout error</li></ul>
+      <h2>When a refund typically won't apply</h2>
+      <ul><li>You've already downloaded and used the files and simply changed your mind</li><li>The product was accurately described but didn't suit your personal preference</li></ul>
+      <h2>How to request one</h2>
+      <p>Contact us within 7 days of purchase with your order number and a short description of the issue. We aim to respond within 2 business days.</p>`},
+    license: {title:"Digital Product License / Usage Policy", body:`
+      <p>Last updated: August 2026. This policy explains what you can and can't do with a DesignBits digital product after purchase.</p>
+      <h2>What you can do</h2>
+      <ul><li>Print or use the product for yourself, your family, your students or your own small business</li><li>Make copies for your own personal or classroom use</li><li>Personalise editable templates with your own text, colours and photos</li></ul>
+      <h2>What you can't do</h2>
+      <ul><li>Resell, redistribute or share the original files (as-is or lightly modified) as your own product</li><li>Upload the files to a public template marketplace or stock site</li><li>Claim authorship of DesignBits' original explainer content</li></ul>
+      <h2>A note on explainer e-books</h2>
+      <p>EbookByte titles that explain the ideas of well-known thinkers or authors are original DesignBits content. They are independent explanatory works, not the original author's text, and are not endorsed by or affiliated with the original author, their publisher or estate unless explicitly stated.</p>
+      <h2>Questions</h2>
+      <p>If you're unsure whether your intended use is covered, contact us before purchasing.</p>`}
+  };
+  const d = map[kind];
+  return `
+  <section class="page-hero"><div class="wrap"><nav class="breadcrumbs"><a href="#/" data-nav>Home</a><span>/</span><span>${esc(d.title)}</span></nav>
+    <h1>${esc(d.title)}</h1></div></section>
+  <section class="section" style="padding-top:0;"><div class="wrap prose">${d.body}</div></section>`;
+}
+
+/* ---------- 404 ---------- */
+function page404(){
+  return `<section class="section"><div class="wrap"><div class="empty-state">
+    <h2 style="font-family:'Fraunces',serif;">Page not found</h2>
+    <p>We couldn't find that page. Let's get you back to the shop.</p>
+    <a href="#/shop" data-nav class="btn btn-primary">Explore Products</a>
+  </div></div></section>`;
+}
+
+/* =========================================================
+   EVENT HANDLING
+========================================================= */
+document.addEventListener('click', (e) => {
+  const navEl = e.target.closest('[data-nav]');
+  if(navEl){
+    e.preventDefault();
+    navigate(navEl.getAttribute('href'));
+    return;
+  }
+  const addEl = e.target.closest('[data-add]');
+  if(addEl){ addToCart(addEl.getAttribute('data-add'), 1); return; }
+
+  const buyEl = e.target.closest('[data-buy]');
+  if(buyEl){ addToCart(buyEl.getAttribute('data-buy'), 1); navigate('#/checkout'); return; }
+
+  const qtyPlus = e.target.closest('[data-qty-plus]');
+  if(qtyPlus){ const s = qtyPlus.getAttribute('data-qty-plus'); setQty(s, (cart[s]||0)+1); return; }
+
+  const qtyMinus = e.target.closest('[data-qty-minus]');
+  if(qtyMinus){ const s = qtyMinus.getAttribute('data-qty-minus'); setQty(s, (cart[s]||0)-1); return; }
+
+  const removeEl = e.target.closest('[data-remove]');
+  if(removeEl){ removeFromCart(removeEl.getAttribute('data-remove')); return; }
+
+  const faqToggle = e.target.closest('[data-faq-toggle]');
+  if(faqToggle){ faqToggle.closest('.faq-item').classList.toggle('open'); return; }
+
+  const dlBtn = e.target.closest('[data-demo-download]');
+  if(dlBtn){ showToast('This is a demo — connect file storage to enable real downloads.'); return; }
+
+  if(e.target.id === 'hamburgerBtn'){
+    document.body.classList.toggle('menu-open');
+    hamburgerBtn.setAttribute('aria-expanded', document.body.classList.contains('menu-open'));
+    return;
+  }
+});
+
+document.addEventListener('submit', (e) => {
+  if(e.target.id === 'headerSearch'){
+    e.preventDefault();
+    searchQuery = e.target.querySelector('input').value.trim();
+    document.body.classList.remove('menu-open');
+    navigate('#/shop');
+  } else if(e.target.id === 'newsletterForm'){
+    e.preventDefault();
+    showToast('Subscribed! Welcome to DesignBits (demo).');
+    e.target.reset();
+  } else if(e.target.id === 'contactForm'){
+    e.preventDefault();
+    showToast("Message sent — we'll reply within 1 business day (demo).");
+    e.target.reset();
+  } else if(e.target.id === 'checkoutForm'){
+    processCheckout(e);
+  }
+});
+
+document.addEventListener('change', (e) => {
+  if(e.target.id === 'sortSelect'){
+    // The select still holds the user's newly chosen value at this point;
+    // pageShop() reads it to decide sort order before the DOM is replaced.
+    render();
+  }
+});
+
+function attachPageBehaviors(route){ /* reserved for future per-page setup */ }
+</script>
+</body>
+</html>
