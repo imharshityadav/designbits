@@ -1,0 +1,603 @@
+[
+  {
+    "slug": "25-osho-ideas-explained-simply",
+    "title": "25 Osho Ideas Explained Simply",
+    "cat": "ebookbyte",
+    "price": 249,
+    "mrp": 399,
+    "badge": "Bestseller",
+    "icon": "📚",
+    "blurb": "Osho's boldest ideas on freedom, love and awareness, unpacked in plain language.",
+    "desc": "An independent, original explainer that breaks down 25 of Osho's most talked-about ideas into short, easy-to-read chapters — for curious readers who want the substance without wading through dense philosophy. This is an original DesignBits publication and is not an official or endorsed release.",
+    "includes": [
+      "25 short chapters",
+      "Key-idea summaries",
+      "Reflection questions after each chapter",
+      "Printable highlights page"
+    ],
+    "format": "PDF (digital download)",
+    "pages": 68,
+    "language": "English",
+    "fileName": "25-osho-ideas-explained-simply.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "stoicism-in-30-pages",
+    "title": "Stoicism in 30 Pages",
+    "cat": "ebookbyte",
+    "price": 199,
+    "mrp": 299,
+    "badge": "Sale",
+    "icon": "📖",
+    "blurb": "The core ideas of Stoic philosophy, distilled into a weekend read.",
+    "desc": "A compact, original guide to Stoic thinking — control, acceptance and calm under pressure — explained through everyday examples rather than academic language.",
+    "includes": [
+      "10 core Stoic ideas",
+      "Daily practice prompts",
+      "Quote reference sheet"
+    ],
+    "format": "PDF (digital download)",
+    "pages": 30,
+    "language": "English",
+    "fileName": "stoicism-in-30-pages.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "the-gita-simply-explained",
+    "title": "The Gita, Simply Explained",
+    "cat": "ebookbyte",
+    "price": 299,
+    "badge": "New",
+    "icon": "📗",
+    "blurb": "The Bhagavad Gita's core teachings, explained chapter by chapter in Hindi and English.",
+    "desc": "An original bilingual explainer that walks through the Gita's central themes — duty, detachment and purpose — in accessible modern language, side by side in Hindi and English.",
+    "includes": [
+      "18-chapter summary",
+      "Hindi + English text",
+      "Glossary of key terms"
+    ],
+    "format": "PDF (digital download)",
+    "pages": 80,
+    "language": "Hindi & English",
+    "fileName": "the-gita-simply-explained.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "atomic-habits-core-ideas-explained",
+    "title": "Atomic Habits — Core Ideas Explained",
+    "cat": "ebookbyte",
+    "price": 199,
+    "badge": "New",
+    "icon": "🔁",
+    "blurb": "The core habit-building framework, condensed into a fast, practical read.",
+    "desc": "An independent summary and explainer covering the core mechanics of habit formation — cues, cravings, response and reward — with worksheets to apply each idea. Not affiliated with or endorsed by the original author or publisher.",
+    "includes": [
+      "40-page explainer",
+      "4-law habit worksheet",
+      "Weekly tracker template"
+    ],
+    "format": "PDF (digital download)",
+    "pages": 40,
+    "language": "English",
+    "fileName": "atomic-habits-core-ideas-explained.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "rumis-wisdom-20-ideas-explained",
+    "title": "Rumi's Wisdom: 20 Ideas Explained",
+    "cat": "ebookbyte",
+    "price": 249,
+    "icon": "🌙",
+    "blurb": "Twenty of Rumi's ideas on love, loss and belonging, explained simply.",
+    "desc": "An original reader's guide to Rumi's most resonant ideas, translated from poetry into plain, reflective prose with space to journal your own thoughts.",
+    "includes": [
+      "20 idea chapters",
+      "Journaling prompts",
+      "Curated verse references"
+    ],
+    "format": "PDF (digital download)",
+    "pages": 50,
+    "language": "English",
+    "fileName": "rumis-wisdom-20-ideas-explained.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "nietzsche-without-the-headache",
+    "title": "Nietzsche Without the Headache",
+    "cat": "ebookbyte",
+    "price": 279,
+    "icon": "🗿",
+    "blurb": "Nietzsche's toughest ideas, explained without the jargon.",
+    "desc": "A friendly, original walkthrough of Nietzsche's key concepts — the will to power, eternal recurrence and more — written for readers who want clarity, not a philosophy degree.",
+    "includes": [
+      "12 concept chapters",
+      "Plain-language glossary",
+      "Discussion questions"
+    ],
+    "format": "PDF (digital download)",
+    "pages": 60,
+    "language": "English",
+    "fileName": "nietzsche-without-the-headache.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "editable-birthday-card-collection",
+    "title": "Editable Birthday Card Collection",
+    "cat": "templatebits",
+    "price": 299,
+    "mrp": 449,
+    "badge": "Sale",
+    "icon": "🎂",
+    "blurb": "20 editable birthday card designs you can personalise in minutes.",
+    "desc": "A set of 20 fully editable birthday card templates. Swap in your own text and photos, then print at home or share digitally.",
+    "includes": [
+      "20 card designs",
+      "Editable text & photo layers",
+      "Print + digital-share versions"
+    ],
+    "format": "Canva template link + PDF",
+    "language": "English",
+    "fileName": "editable-birthday-card-collection.txt",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "editable-invitation-template-pack",
+    "title": "Editable Invitation Template Pack",
+    "cat": "templatebits",
+    "price": 249,
+    "icon": "✉️",
+    "blurb": "All-purpose invitation templates for parties, get-togethers and events.",
+    "desc": "Fifteen editable invitation layouts that work for birthdays, housewarmings and casual events — built for quick customisation with no design skills needed.",
+    "includes": [
+      "15 invitation layouts",
+      "Editable in Canva",
+      "Print-ready PDF versions"
+    ],
+    "format": "Canva template link + PDF",
+    "language": "English",
+    "fileName": "editable-invitation-template-pack.txt",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "instagram-post-template-bundle",
+    "title": "Instagram Post Template Bundle (50 Designs)",
+    "cat": "templatebits",
+    "price": 499,
+    "badge": "Bestseller",
+    "icon": "📱",
+    "blurb": "50 on-trend Instagram post templates for creators and small brands.",
+    "desc": "A ready-to-use bundle of 50 Instagram post designs covering quotes, promos, announcements and carousels — built to be re-themed to any brand's colours in minutes.",
+    "includes": [
+      "50 post templates",
+      "Story-size versions included",
+      "Editable colours & fonts"
+    ],
+    "format": "Canva template link",
+    "language": "English",
+    "fileName": "instagram-post-template-bundle.txt",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "minimal-resume-cover-letter-templates",
+    "title": "Minimal Resume & Cover Letter Templates",
+    "cat": "templatebits",
+    "price": 349,
+    "badge": "New",
+    "icon": "📄",
+    "blurb": "Clean, recruiter-friendly resume and cover letter templates.",
+    "desc": "A set of minimal, easy-to-scan resume and cover letter templates designed for readability, with matching colour variants and clear section structure.",
+    "includes": [
+      "5 resume layouts",
+      "3 matching cover letters",
+      "Editable in Word & Canva"
+    ],
+    "format": "DOCX + Canva template",
+    "language": "English",
+    "fileName": "minimal-resume-cover-letter-templates.txt",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "wedding-invitation-template-set",
+    "title": "Wedding Invitation Template Set",
+    "cat": "templatebits",
+    "price": 599,
+    "icon": "💍",
+    "blurb": "Elegant, editable wedding invitation and save-the-date templates.",
+    "desc": "A coordinated wedding stationery set — invitations, save-the-dates and RSVP cards — in three colour palettes, ready to personalise.",
+    "includes": [
+      "Invitation + save-the-date + RSVP",
+      "3 colour palettes",
+      "Print-ready PDF & Canva link"
+    ],
+    "format": "Canva template link + PDF",
+    "language": "English",
+    "fileName": "wedding-invitation-template-set.txt",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "motivational-poster-design-templates",
+    "title": "Motivational Poster Design Templates",
+    "cat": "templatebits",
+    "price": 299,
+    "icon": "🖼️",
+    "blurb": "Printable motivational posters for home, office or classroom.",
+    "desc": "Twelve editable poster designs with motivational typography, ready to print in A3 or A4 for a study corner, office wall or classroom.",
+    "includes": [
+      "12 poster designs",
+      "A3 & A4 print sizes",
+      "Editable text in Canva"
+    ],
+    "format": "Canva template link + PDF",
+    "language": "English",
+    "fileName": "motivational-poster-design-templates.txt",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "kids-coloring-activity-book",
+    "title": "Kids' Coloring & Activity Book",
+    "cat": "cartoon-activity",
+    "price": 199,
+    "badge": "Bestseller",
+    "icon": "🖍️",
+    "blurb": "40 pages of colouring, mazes and matching games for ages 4–8.",
+    "desc": "A printable activity book packed with colouring pages, simple mazes and matching games, designed to keep young kids happily busy for hours.",
+    "includes": [
+      "40 printable pages",
+      "Colouring + mazes + matching games",
+      "Ages 4–8"
+    ],
+    "format": "PDF (printable)",
+    "pages": 40,
+    "language": "English",
+    "fileName": "kids-coloring-activity-book.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "jungle-animals-coloring-book",
+    "title": "Jungle Animals Coloring Book",
+    "cat": "cartoon-activity",
+    "price": 179,
+    "icon": "🦁",
+    "blurb": "25 jungle-animal colouring pages for little wildlife fans.",
+    "desc": "A cheerful colouring book featuring 25 jungle animals, drawn in bold, easy-to-colour outlines that are kind to small hands and crayons.",
+    "includes": [
+      "25 colouring pages",
+      "Bold, simple outlines",
+      "Ages 3–7"
+    ],
+    "format": "PDF (printable)",
+    "pages": 25,
+    "language": "English",
+    "fileName": "jungle-animals-coloring-book.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "dot-to-dot-puzzle-book-for-kids",
+    "title": "Dot-to-Dot & Puzzle Book for Kids",
+    "cat": "cartoon-activity",
+    "price": 229,
+    "icon": "🔢",
+    "blurb": "35 dot-to-dot, spot-the-difference and number puzzles.",
+    "desc": "A mixed puzzle book with dot-to-dot drawings, spot-the-difference scenes and simple number puzzles, building focus and fine motor skills.",
+    "includes": [
+      "35 puzzle pages",
+      "Answer key included",
+      "Ages 5–9"
+    ],
+    "format": "PDF (printable)",
+    "pages": 35,
+    "language": "English",
+    "fileName": "dot-to-dot-puzzle-book-for-kids.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "alphabet-learning-activity-book",
+    "title": "Alphabet Learning Activity Book",
+    "cat": "cartoon-activity",
+    "price": 249,
+    "badge": "New",
+    "icon": "🔤",
+    "blurb": "A–Z tracing, colouring and matching activities for early learners.",
+    "desc": "A friendly first-alphabet workbook with tracing letters, matching pictures to sounds, and colouring pages for each letter from A to Z.",
+    "includes": [
+      "26 letter activity pages",
+      "Tracing + matching + colouring",
+      "Ages 3–6"
+    ],
+    "format": "PDF (printable)",
+    "pages": 30,
+    "language": "English",
+    "fileName": "alphabet-learning-activity-book.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "fun-maze-logic-puzzle-book",
+    "title": "Fun Maze & Logic Puzzle Book",
+    "cat": "cartoon-activity",
+    "price": 199,
+    "icon": "🧩",
+    "blurb": "30 mazes and logic puzzles for growing problem-solvers.",
+    "desc": "A collection of mazes and simple logic puzzles that get progressively trickier, great for quiet-time activity that still feels like play.",
+    "includes": [
+      "30 puzzle pages",
+      "Easy-to-hard progression",
+      "Ages 6–10"
+    ],
+    "format": "PDF (printable)",
+    "pages": 30,
+    "language": "English",
+    "fileName": "fun-maze-logic-puzzle-book.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "the-little-explorer-story-book",
+    "title": "Cartoon Story Book: The Little Explorer",
+    "cat": "cartoon-activity",
+    "price": 279,
+    "icon": "🧭",
+    "blurb": "An illustrated bedtime story about a curious young explorer.",
+    "desc": "A gentle, illustrated cartoon story following a young explorer's first adventure into the woods — written for read-aloud bedtime moments.",
+    "includes": [
+      "24-page illustrated story",
+      "Read-aloud friendly text",
+      "Ages 4–8"
+    ],
+    "format": "PDF (digital + printable)",
+    "pages": 24,
+    "language": "English",
+    "fileName": "the-little-explorer-story-book.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "30-day-habit-tracker",
+    "title": "30-Day Habit Tracker",
+    "cat": "lifebyte",
+    "price": 149,
+    "badge": "Bestseller",
+    "icon": "✅",
+    "blurb": "Track up to 6 habits a day for 30 days, with a weekly check-in.",
+    "desc": "A simple, printable 30-day tracker for building habits that stick, with a weekly reflection page to notice patterns and adjust.",
+    "includes": [
+      "30-day tracker grid",
+      "Weekly reflection page",
+      "Habit checklist",
+      "Progress page"
+    ],
+    "format": "PDF (printable)",
+    "language": "English",
+    "fileName": "30-day-habit-tracker.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "daily-life-planner",
+    "title": "Daily Life Planner",
+    "cat": "lifebyte",
+    "price": 249,
+    "badge": "Bestseller",
+    "icon": "🗓️",
+    "blurb": "An undated daily planner for tasks, priorities and reflection.",
+    "desc": "An undated daily planner layout with space for top priorities, a schedule block, and a short end-of-day reflection — start any day of the year.",
+    "includes": [
+      "Undated daily pages",
+      "Priority + schedule blocks",
+      "End-of-day reflection"
+    ],
+    "format": "PDF (printable)",
+    "language": "English",
+    "fileName": "daily-life-planner.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "study-planner-undated",
+    "title": "Study Planner (Undated)",
+    "cat": "lifebyte",
+    "price": 199,
+    "badge": "New",
+    "icon": "📝",
+    "blurb": "Plan subjects, revision blocks and exam countdowns in one place.",
+    "desc": "An undated study planner built for students — subject-wise revision tracking, weekly study blocks, and an exam countdown page.",
+    "includes": [
+      "Weekly study planner",
+      "Subject tracker",
+      "Exam countdown page"
+    ],
+    "format": "PDF (printable)",
+    "language": "English",
+    "fileName": "study-planner-undated.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "goal-setting-workbook",
+    "title": "Goal Setting Workbook",
+    "cat": "lifebyte",
+    "price": 299,
+    "icon": "🎯",
+    "blurb": "A guided workbook for setting and breaking down meaningful goals.",
+    "desc": "A step-by-step workbook that turns a big goal into a clear, quarterly action plan, with milestone tracking and monthly check-ins.",
+    "includes": [
+      "Goal-breakdown worksheets",
+      "Quarterly milestone tracker",
+      "Monthly check-in pages"
+    ],
+    "format": "PDF (printable)",
+    "language": "English",
+    "fileName": "goal-setting-workbook.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "self-reflection-journal",
+    "title": "Self-Reflection Journal",
+    "cat": "lifebyte",
+    "price": 249,
+    "icon": "🪞",
+    "blurb": "Guided prompts for a few minutes of honest reflection each day.",
+    "desc": "A guided journal with a short daily prompt, mood check-in and gratitude line — designed to take five minutes and build a steady reflection habit.",
+    "includes": [
+      "60 guided journal pages",
+      "Daily mood check-in",
+      "Gratitude prompts"
+    ],
+    "format": "PDF (printable)",
+    "language": "English",
+    "fileName": "self-reflection-journal.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "weekly-routine-planner",
+    "title": "Weekly Routine Planner",
+    "cat": "lifebyte",
+    "price": 179,
+    "icon": "📆",
+    "blurb": "Map out mornings, work blocks and evenings for a steadier week.",
+    "desc": "A weekly routine template that blocks out mornings, work time and evenings, so your week has a rhythm instead of a scramble.",
+    "includes": [
+      "Weekly routine grid",
+      "Morning + evening checklists",
+      "Time-block key"
+    ],
+    "format": "PDF (printable)",
+    "language": "English",
+    "fileName": "weekly-routine-planner.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "anniversary-card-set",
+    "title": "Anniversary Card Set",
+    "cat": "celebrationbits",
+    "price": 199,
+    "icon": "💞",
+    "blurb": "10 printable anniversary card designs for every kind of couple.",
+    "desc": "A set of 10 printable anniversary cards, from playful to romantic, ready to print at home or send as a digital card.",
+    "includes": [
+      "10 card designs",
+      "Print + digital-share versions",
+      "Editable message field"
+    ],
+    "format": "PDF (printable)",
+    "language": "English",
+    "fileName": "anniversary-card-set.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "wedding-card-collection",
+    "title": "Wedding Card Collection",
+    "cat": "celebrationbits",
+    "price": 349,
+    "badge": "Bestseller",
+    "icon": "💐",
+    "blurb": "12 elegant wedding card designs for guests and couples alike.",
+    "desc": "An elegant printable wedding card collection covering congratulations, guest wishes and thank-you notes, in a coordinated design style.",
+    "includes": [
+      "12 card designs",
+      "Matching envelope card",
+      "Editable text"
+    ],
+    "format": "PDF (printable)",
+    "language": "English",
+    "fileName": "wedding-card-collection.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "thank-you-card-pack",
+    "title": "Thank-You Card Pack",
+    "cat": "celebrationbits",
+    "price": 149,
+    "icon": "🙏",
+    "blurb": "15 printable thank-you cards for gifts, gestures and get-togethers.",
+    "desc": "A versatile pack of 15 thank-you card designs suitable for weddings, birthdays, baby showers and everyday gratitude.",
+    "includes": [
+      "15 card designs",
+      "Print-ready PDF",
+      "Editable message field"
+    ],
+    "format": "PDF (printable)",
+    "language": "English",
+    "fileName": "thank-you-card-pack.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "festival-greeting-cards-diwali-holi",
+    "title": "Festival Greeting Cards (Diwali & Holi)",
+    "cat": "celebrationbits",
+    "price": 229,
+    "badge": "New",
+    "icon": "🪔",
+    "blurb": "Printable and shareable greeting cards for Diwali and Holi.",
+    "desc": "A festive set of Diwali and Holi greeting cards, ready to print for family or share digitally with friends and colleagues.",
+    "includes": [
+      "12 festival card designs",
+      "Diwali + Holi sets",
+      "Print + digital-share versions"
+    ],
+    "format": "PDF (printable + digital)",
+    "language": "English",
+    "fileName": "festival-greeting-cards-diwali-holi.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "printable-birthday-card-collection",
+    "title": "Printable Birthday Card Collection",
+    "cat": "celebrationbits",
+    "price": 199,
+    "icon": "🎈",
+    "blurb": "18 printable birthday cards for kids, friends and family.",
+    "desc": "An 18-design birthday card collection covering playful, elegant and funny styles — print at home in minutes.",
+    "includes": [
+      "18 card designs",
+      "Print-ready PDF",
+      "Editable message field"
+    ],
+    "format": "PDF (printable)",
+    "language": "English",
+    "fileName": "printable-birthday-card-collection.pdf",
+    "active": true,
+    "driveFileId": null
+  },
+  {
+    "slug": "baby-shower-invitation-set",
+    "title": "Baby Shower Invitation Set",
+    "cat": "celebrationbits",
+    "price": 279,
+    "icon": "👶",
+    "blurb": "8 charming baby shower invitation designs, gender-neutral and themed.",
+    "desc": "A set of 8 baby shower invitations, including gender-neutral and themed options, ready to personalise with your event details.",
+    "includes": [
+      "8 invitation designs",
+      "Gender-neutral + themed options",
+      "Editable event details"
+    ],
+    "format": "PDF (printable) + Canva link",
+    "language": "English",
+    "fileName": "baby-shower-invitation-set.txt",
+    "active": true,
+    "driveFileId": null
+  }
+]
