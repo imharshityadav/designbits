@@ -570,6 +570,9 @@ const PRODUCTS = [
 /* =========================================================
    STATE & HELPERS
 ========================================================= */
+// Point this at your deployed/local backend from /server (see server/README.md).
+let API_BASE = 'https://designbits.onrender.com';
+
 let cart = {};      // slug -> qty
 let lastOrder = null;
 let searchQuery = '';
@@ -694,7 +697,7 @@ function render(){
   } else if(route === 'checkout'){
     html = pageCheckout();
   } else if(route === 'order-success'){
-    html = pageOrderSuccess();
+    html = pageOrderSuccess(q);
   } else if(route === 'about'){
     html = pageAbout();
   } else if(route === 'contact'){
@@ -1038,7 +1041,7 @@ function pageCheckout(){
   <section class="section" style="padding-top:0;">
     <div class="wrap checkout-layout">
       <div>
-        <div class="demo-notice">⚠️ <div><strong>Demo checkout.</strong> This flow is a working preview of the purchase experience — no real payment gateway is connected yet, and no money will be charged. It's built so a provider like Razorpay, Stripe or PayPal can be plugged in later.</div></div>
+        <div class="demo-notice">🔌 <div><strong>Payments are wired to a real backend, not simulated.</strong> Razorpay and Stripe below call the API in <span class="mono">/server</span> — run it and point <span class="mono">API_BASE</span> (top of this file's script) at your backend URL. "Demo Mode" still works with no backend at all, for quick previews.</div></div>
         <form id="checkoutForm">
           <h3 style="font-size:16px;">Contact details</h3>
           <div class="form-group"><label for="ckName">Full name</label><input id="ckName" required placeholder="Jordan Lee"></div>
@@ -1046,13 +1049,13 @@ function pageCheckout(){
             <div class="form-group"><label for="ckEmail">Email address</label><input id="ckEmail" type="email" required placeholder="you@example.com"></div>
             <div class="form-group"><label for="ckPhone">Phone number</label><input id="ckPhone" type="tel" placeholder="+91 90000 00000"></div>
           </div>
-          <h3 style="font-size:16px;margin-top:22px;">Payment method (demo)</h3>
+          <h3 style="font-size:16px;margin-top:22px;">Payment method</h3>
           <div class="pay-options">
-            <label class="pay-option"><input type="radio" name="pay" value="upi" checked> UPI (Google Pay / PhonePe / Paytm)</label>
-            <label class="pay-option"><input type="radio" name="pay" value="card"> Credit / Debit Card</label>
-            <label class="pay-option"><input type="radio" name="pay" value="paypal"> PayPal (international)</label>
+            <label class="pay-option"><input type="radio" name="pay" value="razorpay" checked> Razorpay — UPI, Cards & Netbanking (India)</label>
+            <label class="pay-option"><input type="radio" name="pay" value="stripe"> Stripe — Cards & PayPal (International)</label>
+            <label class="pay-option"><input type="radio" name="pay" value="demo"> Demo Mode — simulate an order, no payment or backend needed</label>
           </div>
-          <button type="submit" class="btn btn-primary btn-block">Place Demo Order — ${money(total)}</button>
+          <button type="submit" class="btn btn-primary btn-block">Pay ${money(total)}</button>
         </form>
       </div>
       <div class="summary-box">
@@ -1064,44 +1067,223 @@ function pageCheckout(){
   </section>`;
 }
 
-function processCheckout(e){
+function cartApiItems(){
+  return cartItems().map(({product, qty}) => ({ slug: product.slug, qty }));
+}
+
+async function handleCheckoutSubmit(e){
   e.preventDefault();
+  const items = cartItems();
+  if(!items.length) return;
+  const method = document.querySelector('input[name="pay"]:checked').value;
+  const customer = {
+    name: document.getElementById('ckName').value,
+    email: document.getElementById('ckEmail').value,
+    phone: document.getElementById('ckPhone').value,
+  };
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const originalLabel = submitBtn.textContent;
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Processing…';
+  try{
+    if(method === 'razorpay'){
+      await payWithRazorpay(customer);
+    } else if(method === 'stripe'){
+      await payWithStripe(customer); // navigates away on success
+    } else {
+      processDemoCheckout(customer);
+    }
+  } catch(err){
+    console.error(err);
+    showToast(err.message || 'Something went wrong. Please try again.');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalLabel;
+  }
+}
+
+function processDemoCheckout(customer){
   const items = cartItems();
   lastOrder = {
     id: 'DB' + Math.floor(100000 + Math.random()*900000),
-    items,
+    source: 'demo',
+    email: customer.email,
     total: cartTotal(),
-    email: document.getElementById('ckEmail').value
+    downloads: items.map(({product,qty}) => ({
+      title: product.title + (qty>1 ? ` × ${qty}` : ''),
+      format: product.format,
+      url: null
+    }))
   };
   cart = {};
   updateCartBadge();
   navigate('#/order-success');
 }
 
+let razorpayScriptPromise = null;
+function loadRazorpayScript(){
+  if(window.Razorpay) return Promise.resolve();
+  if(razorpayScriptPromise) return razorpayScriptPromise;
+  razorpayScriptPromise = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error('Could not load the Razorpay checkout script — check your connection.'));
+    document.head.appendChild(script);
+  });
+  return razorpayScriptPromise;
+}
+
+async function payWithRazorpay(customer){
+  const resp = await fetch(`${API_BASE}/api/razorpay/create-order`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ items: cartApiItems(), customer })
+  });
+  const data = await resp.json();
+  if(!resp.ok) throw new Error(data.error || 'Could not start Razorpay checkout. Is the backend running?');
+
+  await loadRazorpayScript();
+
+  const rzp = new window.Razorpay({
+    key: data.keyId,
+    amount: data.amount,
+    currency: data.currency,
+    order_id: data.razorpayOrderId,
+    name: 'DesignBits',
+    description: 'DesignBits digital products',
+    prefill: { name: customer.name, email: customer.email, contact: customer.phone },
+    theme: { color: '#4B3FE0' },
+    handler: async function(response){
+      try{
+        const verifyResp = await fetch(`${API_BASE}/api/razorpay/verify`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            designbitsOrderId: data.orderId,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature
+          })
+        });
+        const verifyData = await verifyResp.json();
+        if(verifyResp.ok && verifyData.success){
+          lastOrder = normalizeServerOrder(verifyData.order);
+          cart = {};
+          updateCartBadge();
+          navigate('#/order-success');
+        } else {
+          showToast('Payment verification failed: ' + (verifyData.error || 'Unknown error'));
+        }
+      } catch(err){
+        showToast('Could not verify payment: ' + err.message);
+      }
+    },
+    modal: { ondismiss: function(){ showToast('Payment window closed.'); } }
+  });
+  rzp.open();
+}
+
+async function payWithStripe(customer){
+  const resp = await fetch(`${API_BASE}/api/stripe/create-checkout-session`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ items: cartApiItems(), customer })
+  });
+  const data = await resp.json();
+  if(!resp.ok) throw new Error(data.error || 'Could not start Stripe checkout. Is the backend running?');
+  window.location.href = data.url; // hand off to Stripe's hosted checkout page
+}
+
+function normalizeServerOrder(order){
+  return {
+    id: order.id,
+    source: 'server',
+    email: (order.customer && order.customer.email) || '',
+    total: order.totalInr,
+    downloads: order.downloads.map(d => {
+      const p = productBySlug(d.slug);
+      return { title: d.title, format: p ? p.format : '', url: d.url };
+    })
+  };
+}
+
 /* ---------- Order Success ---------- */
-function pageOrderSuccess(){
-  if(!lastOrder){
-    return `<section class="section"><div class="wrap"><div class="empty-state"><h2 style="font-family:'Fraunces',serif;">No recent order found</h2><p>Place an order to see your downloads here.</p><a href="#/shop" data-nav class="btn btn-primary">Explore Products</a></div></div></section>`;
+function pageOrderSuccess(q){
+  // Stripe redirects back with ?session_id=... inside our hash route.
+  // We verify that session against the backend (the webhook is the real
+  // source of truth; this just reads back whatever the backend has stored).
+  if(q && q.session_id){
+    verifyStripeSession(q.session_id);
+    return orderSuccessLoadingHtml();
   }
+  if(!lastOrder){
+    return orderSuccessEmptyHtml();
+  }
+  return orderSuccessContentHtml(lastOrder);
+}
+
+function orderSuccessLoadingHtml(){
+  return `<section class="section"><div class="wrap"><div class="success-box">
+    <div class="success-icon">⏳</div>
+    <h1>Confirming your payment…</h1>
+    <p style="color:var(--ink-soft);">Hang tight — we're checking your payment with Stripe.</p>
+  </div></div></section>`;
+}
+
+function orderSuccessEmptyHtml(){
+  return `<section class="section"><div class="wrap"><div class="empty-state">
+    <h2 style="font-family:'Fraunces',serif;">No recent order found</h2>
+    <p>Place an order to see your downloads here.</p>
+    <a href="#/shop" data-nav class="btn btn-primary">Explore Products</a>
+  </div></div></section>`;
+}
+
+function orderSuccessContentHtml(o){
+  const isDemo = o.source === 'demo';
   return `
   <section class="section">
     <div class="wrap">
       <div class="success-box">
         <div class="success-icon">✓</div>
-        <span class="badge badge-demo" style="margin-bottom:10px;">Demo order — no payment was charged</span>
+        <span class="badge badge-demo" style="margin-bottom:10px;">${isDemo ? 'Demo order — no payment was charged' : 'Payment confirmed'}</span>
         <h1>Thank you! Your order is ready.</h1>
-        <p style="color:var(--ink-soft);">Order <strong class="mono">${lastOrder.id}</strong> — a receipt and download links have been "sent" to <strong>${esc(lastOrder.email||'your email')}</strong>.</p>
+        <p style="color:var(--ink-soft);">Order <strong class="mono">${esc(o.id)}</strong> — a receipt and download links have been sent to <strong>${esc(o.email||'your email')}</strong>.</p>
         <div class="download-list">
-          ${lastOrder.items.map(({product,qty})=>`
+          ${o.downloads.map(d=>`
             <div class="download-row">
-              <div><div class="dl-name">${esc(product.title)} ${qty>1?`× ${qty}`:''}</div><div style="font-size:12px;color:var(--ink-faint);">${esc(product.format)}</div></div>
-              <button class="btn btn-ghost btn-sm" data-demo-download>Download</button>
+              <div><div class="dl-name">${esc(d.title)}</div>${d.format?`<div style="font-size:12px;color:var(--ink-faint);">${esc(d.format)}</div>`:''}</div>
+              ${d.url
+                ? `<a class="btn btn-ghost btn-sm" href="${API_BASE}${d.url}" target="_blank" rel="noopener">Download</a>`
+                : `<button class="btn btn-ghost btn-sm" data-demo-download>Download</button>`}
             </div>`).join('')}
         </div>
         <a href="#/shop" data-nav class="btn btn-primary">Continue Shopping</a>
       </div>
     </div>
   </section>`;
+}
+
+async function verifyStripeSession(sessionId){
+  try{
+    const resp = await fetch(`${API_BASE}/api/stripe/verify-session?session_id=${encodeURIComponent(sessionId)}`);
+    const data = await resp.json();
+    if(resp.ok && data.success){
+      lastOrder = normalizeServerOrder(data.order);
+      cart = {};
+      updateCartBadge();
+    } else {
+      lastOrder = null;
+      showToast('We could not confirm this payment yet. Please check your email or contact support.');
+    }
+  } catch(err){
+    lastOrder = null;
+    showToast('Could not reach the payment server to confirm your order.');
+  }
+  const {parts} = parseHash();
+  if(parts[0] === 'order-success'){
+    document.getElementById('app').innerHTML = lastOrder ? orderSuccessContentHtml(lastOrder) : orderSuccessEmptyHtml();
+  }
 }
 
 /* ---------- About ---------- */
@@ -1294,7 +1476,7 @@ document.addEventListener('submit', (e) => {
     showToast("Message sent — we'll reply within 1 business day (demo).");
     e.target.reset();
   } else if(e.target.id === 'checkoutForm'){
-    processCheckout(e);
+    handleCheckoutSubmit(e);
   }
 });
 
