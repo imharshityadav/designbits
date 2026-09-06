@@ -6,7 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const { nanoid } = require('nanoid');
 const Razorpay = require('razorpay');
-const Stripe = require('stripe');
+const paypal = require('./lib/paypal');
 
 const { loadProducts, findBySlug, priceCart } = require('./lib/products');
 const orders = require('./lib/orders');
@@ -21,15 +21,8 @@ const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_missing');
 
 app.use(cors({ origin: ALLOWED_ORIGINS }));
-
-// Stripe webhooks need the RAW request body to verify the signature, so this
-// route is registered with express.raw() BEFORE the global express.json()
-// middleware below (Express matches routes in registration order).
-app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), handleStripeWebhook);
-
 app.use(express.json());
 
 /* ------------------------------------------------------------------ */
@@ -113,45 +106,36 @@ app.post('/api/razorpay/verify', (req, res) => {
 });
 
 /* ------------------------------------------------------------------ */
-/* Stripe — international (cards, PayPal via Stripe Checkout, wallets) */
+/* PayPal — international (cards + PayPal balance)                     */
 /* ------------------------------------------------------------------ */
 
-app.post('/api/stripe/create-checkout-session', async (req, res) => {
+app.post('/api/paypal/create-order', async (req, res) => {
   try {
     const { items, customer } = req.body;
     const { lines, totalInr } = priceCart(items);
 
-    const currency = (process.env.STRIPE_CURRENCY || 'usd').toLowerCase();
+    const currency = (process.env.PAYPAL_CURRENCY || 'USD').toUpperCase();
     const rate = Number(process.env.INR_TO_USD_RATE || 0.012);
     // Demo-only conversion. Replace with real per-market pricing or a live
     // FX rate provider before going live.
-    const toMinorUnits = inr => Math.round(inr * rate * 100);
+    const amountValue = (totalInr * rate).toFixed(2);
 
     const orderId = 'DB' + nanoid(8).toUpperCase();
 
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      // Card + PayPal (PayPal must also be enabled in your Stripe Dashboard
-      // under Settings > Payment methods for your account/region).
-      payment_method_types: ['card', 'paypal'],
-      line_items: lines.map(l => ({
-        quantity: l.quantity,
-        price_data: {
-          currency,
-          unit_amount: toMinorUnits(l.unitPriceInr),
-          product_data: { name: l.title },
-        },
-      })),
-      customer_email: customer && customer.email ? customer.email : undefined,
-      metadata: { designbitsOrderId: orderId },
-      success_url: `${FRONTEND_URL}/#/order-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${FRONTEND_URL}/#/checkout`,
+    // PayPal appends ?token=<paypalOrderId>&PayerID=<id> to this return_url
+    // itself once the buyer approves — no placeholder needed here.
+    const { paypalOrderId, approveUrl } = await paypal.createOrder({
+      orderId,
+      amountValue,
+      currency,
+      returnUrl: `${FRONTEND_URL}/#/order-success`,
+      cancelUrl: `${FRONTEND_URL}/#/checkout`,
     });
 
     orders.createOrder({
       id: orderId,
-      gateway: 'stripe',
-      gatewayRef: session.id,
+      gateway: 'paypal',
+      gatewayRef: paypalOrderId,
       status: 'pending',
       items: lines,
       totalInr,
@@ -160,66 +144,32 @@ app.post('/api/stripe/create-checkout-session', async (req, res) => {
       createdAt: new Date().toISOString(),
     });
 
-    res.json({ url: session.url });
+    res.json({ approveUrl });
   } catch (err) {
-    console.error('stripe/create-checkout-session error:', err.message);
+    console.error('paypal/create-order error:', err.message);
     res.status(400).json({ error: err.message });
   }
 });
 
-function handleStripeWebhook(req, res) {
-  let event;
+// The frontend calls this once PayPal redirects back with ?token=...
+// (PayPal's own order id). We capture the payment here rather than via a
+// webhook, since PayPal's redirect flow only fires after buyer approval.
+app.post('/api/paypal/capture-order', async (req, res) => {
   try {
-    const signature = req.headers['stripe-signature'];
-    event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET);
-  } catch (err) {
-    console.error('Stripe webhook signature check failed:', err.message);
-    return res.status(400).send(`Webhook Error: ${err.message}`);
-  }
+    const { paypalOrderId } = req.body;
+    if (!paypalOrderId) return res.status(400).json({ error: 'paypalOrderId is required.' });
 
-  if (event.type === 'checkout.session.completed') {
-    const session = event.data.object;
-    const orderId = session.metadata && session.metadata.designbitsOrderId;
-    if (orderId) {
-      orders.updateOrder(orderId, {
-        status: 'paid',
-        gatewayPaymentId: session.payment_intent,
-        paidAt: new Date().toISOString(),
-      });
-    }
-  }
-  res.json({ received: true });
-}
-
-// The frontend calls this after Stripe redirects back with ?session_id=...
-// The webhook above is the real source of truth; this endpoint just reads
-// whatever state we've stored (and double-checks with Stripe directly if the
-// webhook hasn't landed yet, which can happen with a slight delay locally).
-app.get('/api/stripe/verify-session', async (req, res) => {
-  try {
-    const { session_id } = req.query;
-    if (!session_id) return res.status(400).json({ error: 'session_id is required.' });
-
-    let order = orders.findByGatewayRef(session_id);
-    if (!order) return res.status(404).json({ error: 'Order not found for this session.' });
+    let order = orders.findByGatewayRef(paypalOrderId);
+    if (!order) return res.status(404).json({ error: 'Order not found for this PayPal order.' });
 
     if (order.status !== 'paid') {
-      const session = await stripe.checkout.sessions.retrieve(session_id);
-      if (session.payment_status === 'paid') {
-        order = orders.updateOrder(order.id, {
-          status: 'paid',
-          gatewayPaymentId: session.payment_intent,
-          paidAt: new Date().toISOString(),
-        });
-      }
+      await paypal.captureOrder(paypalOrderId);
+      order = orders.updateOrder(order.id, { status: 'paid', paidAt: new Date().toISOString() });
     }
 
-    if (order.status !== 'paid') {
-      return res.json({ success: false, status: order.status });
-    }
     res.json({ success: true, order: buildOrderResponse(order) });
   } catch (err) {
-    console.error('stripe/verify-session error:', err.message);
+    console.error('paypal/capture-order error:', err.message);
     res.status(400).json({ error: err.message });
   }
 });
