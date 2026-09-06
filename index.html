@@ -571,7 +571,7 @@ const PRODUCTS = [
    STATE & HELPERS
 ========================================================= */
 // Point this at your deployed/local backend from /server (see server/README.md).
-let API_BASE = 'https://designbits.onrender.com';
+let API_BASE = 'http://localhost:4000';
 
 let cart = {};      // slug -> qty
 let lastOrder = null;
@@ -1041,7 +1041,7 @@ function pageCheckout(){
   <section class="section" style="padding-top:0;">
     <div class="wrap checkout-layout">
       <div>
-        <div class="demo-notice">🔌 <div><strong>Payments are wired to a real backend, not simulated.</strong> Razorpay and Stripe below call the API in <span class="mono">/server</span> — run it and point <span class="mono">API_BASE</span> (top of this file's script) at your backend URL. "Demo Mode" still works with no backend at all, for quick previews.</div></div>
+        <div class="demo-notice">🔌 <div><strong>Payments are wired to a real backend, not simulated.</strong> Razorpay and PayPal below call the API in <span class="mono">/server</span> — run it and point <span class="mono">API_BASE</span> (top of this file's script) at your backend URL. "Demo Mode" still works with no backend at all, for quick previews.</div></div>
         <form id="checkoutForm">
           <h3 style="font-size:16px;">Contact details</h3>
           <div class="form-group"><label for="ckName">Full name</label><input id="ckName" required placeholder="Jordan Lee"></div>
@@ -1052,7 +1052,7 @@ function pageCheckout(){
           <h3 style="font-size:16px;margin-top:22px;">Payment method</h3>
           <div class="pay-options">
             <label class="pay-option"><input type="radio" name="pay" value="razorpay" checked> Razorpay — UPI, Cards & Netbanking (India)</label>
-            <label class="pay-option"><input type="radio" name="pay" value="stripe"> Stripe — Cards & PayPal (International)</label>
+            <label class="pay-option"><input type="radio" name="pay" value="paypal"> PayPal — Cards & PayPal Balance (International)</label>
             <label class="pay-option"><input type="radio" name="pay" value="demo"> Demo Mode — simulate an order, no payment or backend needed</label>
           </div>
           <button type="submit" class="btn btn-primary btn-block">Pay ${money(total)}</button>
@@ -1088,8 +1088,8 @@ async function handleCheckoutSubmit(e){
   try{
     if(method === 'razorpay'){
       await payWithRazorpay(customer);
-    } else if(method === 'stripe'){
-      await payWithStripe(customer); // navigates away on success
+    } else if(method === 'paypal'){
+      await payWithPaypal(customer); // navigates away on success
     } else {
       processDemoCheckout(customer);
     }
@@ -1184,15 +1184,15 @@ async function payWithRazorpay(customer){
   rzp.open();
 }
 
-async function payWithStripe(customer){
-  const resp = await fetch(`${API_BASE}/api/stripe/create-checkout-session`, {
+async function payWithPaypal(customer){
+  const resp = await fetch(`${API_BASE}/api/paypal/create-order`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({ items: cartApiItems(), customer })
   });
   const data = await resp.json();
-  if(!resp.ok) throw new Error(data.error || 'Could not start Stripe checkout. Is the backend running?');
-  window.location.href = data.url; // hand off to Stripe's hosted checkout page
+  if(!resp.ok) throw new Error(data.error || 'Could not start PayPal checkout. Is the backend running?');
+  window.location.href = data.approveUrl; // hand off to PayPal's hosted approval page
 }
 
 function normalizeServerOrder(order){
@@ -1210,11 +1210,12 @@ function normalizeServerOrder(order){
 
 /* ---------- Order Success ---------- */
 function pageOrderSuccess(q){
-  // Stripe redirects back with ?session_id=... inside our hash route.
-  // We verify that session against the backend (the webhook is the real
-  // source of truth; this just reads back whatever the backend has stored).
-  if(q && q.session_id){
-    verifyStripeSession(q.session_id);
+  // PayPal redirects back with ?token=<paypalOrderId>&PayerID=... inside our
+  // hash route once the buyer approves. We call the backend to actually
+  // capture the payment (PayPal's redirect flow has no separate webhook step
+  // here — capture happens synchronously on this return trip).
+  if(q && q.token){
+    verifyPaypalOrder(q.token);
     return orderSuccessLoadingHtml();
   }
   if(!lastOrder){
@@ -1227,7 +1228,7 @@ function orderSuccessLoadingHtml(){
   return `<section class="section"><div class="wrap"><div class="success-box">
     <div class="success-icon">⏳</div>
     <h1>Confirming your payment…</h1>
-    <p style="color:var(--ink-soft);">Hang tight — we're checking your payment with Stripe.</p>
+    <p style="color:var(--ink-soft);">Hang tight — we're checking your payment with PayPal.</p>
   </div></div></section>`;
 }
 
@@ -1264,9 +1265,13 @@ function orderSuccessContentHtml(o){
   </section>`;
 }
 
-async function verifyStripeSession(sessionId){
+async function verifyPaypalOrder(paypalOrderId){
   try{
-    const resp = await fetch(`${API_BASE}/api/stripe/verify-session?session_id=${encodeURIComponent(sessionId)}`);
+    const resp = await fetch(`${API_BASE}/api/paypal/capture-order`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ paypalOrderId })
+    });
     const data = await resp.json();
     if(resp.ok && data.success){
       lastOrder = normalizeServerOrder(data.order);
