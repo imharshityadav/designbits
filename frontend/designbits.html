@@ -3,33 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesignBits — Digital Products for Every Part of Life</title>
-<meta name="description" content="DesignBits is a digital products store — e-books, templates, kids' activity books, planners and celebration cards, made simple and instantly downloadable.">
+<title>DigitalByte — Digital Products for Every Part of Life</title>
+<meta name="description" content="DigitalByte is a digital products store — e-books, templates, kids' activity books, planners and celebration cards, made simple and instantly downloadable.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 116 128'%3E%3Cdefs%3E%3ClinearGradient id='gt' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F3E1AE'/%3E%3Cstop offset='55%25' stop-color='%23D9AE55'/%3E%3Cstop offset='100%25' stop-color='%23B8862E'/%3E%3C/linearGradient%3E%3ClinearGradient id='gl' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236E4EA8'/%3E%3Cstop offset='100%25' stop-color='%23432D6C'/%3E%3C/linearGradient%3E%3ClinearGradient id='gr' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%238F6520'/%3E%3Cstop offset='100%25' stop-color='%235E4415'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg transform='translate(0,4)'%3E%3Cpolygon points='58,0 92,26 58,42 24,26' fill='url(%23gt)'/%3E%3Cpolygon points='24,26 58,42 58,112' fill='url(%23gl)'/%3E%3Cpolygon points='92,26 58,42 58,112' fill='url(%23gr)'/%3E%3Cpolygon points='46,14 54,10 50,20' fill='%23FFFFFF' opacity='0.75'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F7F6F1;
+  --bg:#FBF8F2;
   --bg-alt:#FFFFFF;
-  --paper:#FCFBF8;
-  --ink:#1C1B1F;
-  --ink-soft:#5B5A63;
-  --ink-faint:#8C8B92;
-  --line:#E7E4DA;
-  --brand:#4B3FE0;
-  --brand-dark:#372DAE;
-  --brand-tint:#EDEBFC;
-  --amber:#DB9A2E; --amber-dark:#A56E17; --amber-tint:#FBF0DC;
-  --sky:#2F86BF; --sky-dark:#215F8B; --sky-tint:#E3F0F9;
-  --coral:#E85670; --coral-dark:#B7364C; --coral-tint:#FCE6EA;
-  --teal:#238E76; --teal-dark:#166352; --teal-tint:#DEF2ED;
-  --plum:#A32E76; --plum-dark:#791F58; --plum-tint:#F5E1EE;
+  --paper:#F6F0E4;
+  --ink:#231F2E;
+  --ink-soft:#5D5768;
+  --ink-faint:#948E9E;
+  --line:#E9E1D2;
+  --brand:#5A3E8C;
+  --brand-dark:#432D6C;
+  --brand-tint:#EFE7F7;
+  --gold:#B8862E;
+  --gold-dark:#8F6520;
+  --gold-tint:#FBF1DE;
+  --amber:#C9962C; --amber-dark:#8F6518; --amber-tint:#FAF0DA;
+  --sky:#2B6CA3; --sky-dark:#1D4E79; --sky-tint:#E1EEF7;
+  --coral:#C4485F; --coral-dark:#973445; --coral-tint:#F9E4E8;
+  --teal:#1F7A5C; --teal-dark:#155A43; --teal-tint:#DDEFE8;
+  --plum:#8C2F63; --plum-dark:#6A2049; --plum-tint:#F2E1EC;
   --radius-sm:10px;
   --radius:16px;
   --radius-lg:26px;
-  --shadow-sm:0 2px 8px rgba(28,27,31,.06);
-  --shadow:0 10px 30px rgba(28,27,31,.09);
-  --shadow-lg:0 20px 50px rgba(28,27,31,.14);
+  --shadow-sm:0 2px 8px rgba(35,31,46,.07);
+  --shadow:0 10px 30px rgba(35,31,46,.10);
+  --shadow-lg:0 22px 54px rgba(35,31,46,.16);
   --maxw:1200px;
 }
 *,*::before,*::after{box-sizing:border-box;}
@@ -48,8 +52,8 @@ button{font-family:inherit;cursor:pointer;}
 /* Buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:999px;border:1.5px solid transparent;font-weight:600;font-size:15px;transition:transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;white-space:nowrap;}
 .btn:active{transform:scale(.97);}
-.btn-primary{background:var(--ink);color:#fff;}
-.btn-primary:hover{background:var(--brand-dark);}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 4px 14px rgba(90,62,140,.25);}
+.btn-primary:hover{background:var(--brand-dark);box-shadow:0 6px 18px rgba(90,62,140,.32);}
 .btn-outline{background:transparent;border-color:var(--ink);color:var(--ink);}
 .btn-outline:hover{background:var(--ink);color:#fff;}
 .btn-ghost{background:var(--bg-alt);border-color:var(--line);color:var(--ink);}
@@ -60,35 +64,40 @@ button{font-family:inherit;cursor:pointer;}
 
 /* Badges */
 .badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.03em;text-transform:uppercase;padding:4px 10px;border-radius:999px;font-weight:600;}
-.badge-bestseller{background:var(--brand-tint);color:var(--brand-dark);}
+.badge-bestseller{background:var(--gold-tint);color:var(--gold-dark);}
 .badge-new{background:var(--teal-tint);color:var(--teal-dark);}
 .badge-sale{background:var(--coral-tint);color:var(--coral-dark);}
 .badge-demo{background:#F1EFE7;color:var(--ink-soft);}
 
 /* Header */
-#site-header{position:sticky;top:0;z-index:50;background:rgba(247,246,241,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;max-width:var(--maxw);margin:0 auto;}
-.logo{display:flex;align-items:center;gap:9px;font-family:'Fraunces',serif;font-weight:700;font-size:22px;letter-spacing:-.01em;}
-.logo .dot{width:9px;height:9px;border-radius:50%;background:var(--brand);display:inline-block;}
+#site-header{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.90);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(184,134,46,.35);}
+#site-header::before{content:"";display:block;height:3px;background:linear-gradient(90deg,var(--brand) 0%,var(--gold) 55%,var(--brand) 100%);}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 24px;max-width:var(--maxw);margin:0 auto;}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:22px;letter-spacing:-.01em;color:var(--ink);}
+.logo-icon{width:24px;height:26px;flex-shrink:0;}
 nav.main-nav{display:flex;align-items:center;gap:28px;}
 nav.main-nav a{font-size:14.5px;font-weight:600;color:var(--ink-soft);padding:6px 0;position:relative;}
+nav.main-nav a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .18s ease;}
 nav.main-nav a:hover, nav.main-nav a.active{color:var(--ink);}
+nav.main-nav a:hover::after, nav.main-nav a.active::after{transform:scaleX(1);}
 .nav-dropdown{position:relative;}
 .nav-dropdown-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-lg);padding:10px;width:280px;display:none;flex-direction:column;gap:2px;}
 .nav-dropdown:hover .nav-dropdown-panel, .nav-dropdown:focus-within .nav-dropdown-panel{display:flex;}
 .nav-dropdown-panel a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:14px;}
-.nav-dropdown-panel a:hover{background:var(--bg);}
+.nav-dropdown-panel a:hover{background:var(--gold-tint);}
 .header-actions{display:flex;align-items:center;gap:10px;}
 .icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:17px;position:relative;flex-shrink:0;}
-.icon-btn:hover{border-color:var(--ink);}
-.cart-count{position:absolute;top:-4px;right:-4px;background:var(--brand);color:#fff;font-size:10.5px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;}
+.icon-btn:hover{border-color:var(--gold);}
+.cart-count{position:absolute;top:-4px;right:-4px;background:var(--gold);color:#fff;font-size:10.5px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;}
 .search-form{display:flex;align-items:center;background:var(--bg-alt);border:1px solid var(--line);border-radius:999px;padding:4px 4px 4px 14px;gap:6px;}
 .search-form input{border:none;background:transparent;outline:none;font-family:inherit;font-size:13.5px;width:150px;}
 .search-form button{background:var(--ink);color:#fff;border:none;border-radius:999px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;}
-.hamburger{display:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg-alt);align-items:center;justify-content:center;}
-.mobile-menu{display:none;flex-direction:column;gap:4px;padding:10px 24px 20px;border-top:1px solid var(--line);}
-.mobile-menu a{padding:12px 6px;font-weight:600;font-size:15px;border-bottom:1px solid var(--line);}
-.mobile-menu .mm-sub{padding-left:16px;font-weight:500;color:var(--ink-soft);font-size:14px;}
+.hamburger{display:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--bg-alt);align-items:center;justify-content:center;font-size:18px;}
+.hamburger:active{background:var(--gold-tint);}
+.mobile-menu{display:none;flex-direction:column;gap:2px;padding:10px 20px 22px;border-top:1px solid var(--line);background:var(--bg-alt);}
+.mobile-menu a{padding:14px 6px;font-weight:600;font-size:16px;border-bottom:1px solid var(--line);}
+.mobile-menu a:active{background:var(--gold-tint);}
+.mobile-menu .mm-sub{padding-left:18px;font-weight:500;color:var(--ink-soft);font-size:14.5px;}
 body.menu-open .mobile-menu{display:flex;}
 
 @media (max-width:900px){
@@ -306,6 +315,12 @@ select#sortSelect{padding:10px 14px;border-radius:10px;border:1px solid var(--li
 @media (max-width:600px){
   .newsletter{padding:36px 24px;flex-direction:column;align-items:flex-start;}
   .section{padding:40px 0;}
+  .header-inner{padding:12px 18px;}
+  .logo{font-size:19px;}
+  .hero{padding:40px 0 28px;}
+  .hero p.lead{font-size:16px;}
+  .hero-ctas .btn{flex:1 1 auto;text-align:center;}
+  .wrap{padding:0 18px;}
 }
 @media (prefers-reduced-motion: reduce){
   *{transition:none !important; scroll-behavior:auto !important;}
@@ -316,7 +331,7 @@ select#sortSelect{padding:10px 14px;border-radius:10px;border:1px solid var(--li
 
 <header id="site-header">
   <div class="header-inner">
-    <a href="#/" class="logo" data-nav><span class="dot"></span>DesignBits</a>
+    <a href="#/" class="logo" data-nav><svg class="logo-icon" viewBox="0 0 116 128" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lgTop" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F3E1AE"/><stop offset="55%" stop-color="#D9AE55"/><stop offset="100%" stop-color="#B8862E"/></linearGradient><linearGradient id="lgLeft" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6E4EA8"/><stop offset="100%" stop-color="#432D6C"/></linearGradient><linearGradient id="lgRight" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8F6520"/><stop offset="100%" stop-color="#5E4415"/></linearGradient></defs><g transform="translate(0,4)"><polygon points="58,0 92,26 58,42 24,26" fill="url(#lgTop)"/><polygon points="24,26 58,42 58,112" fill="url(#lgLeft)"/><polygon points="92,26 58,42 58,112" fill="url(#lgRight)"/><polygon points="46,14 54,10 50,20" fill="#FFFFFF" opacity="0.75"/></g></svg>DigitalByte</a>
     <nav class="main-nav" aria-label="Main">
       <a href="#/shop" data-nav>Shop</a>
       <div class="nav-dropdown">
@@ -344,7 +359,7 @@ select#sortSelect{padding:10px 14px;border-radius:10px;border:1px solid var(--li
     <a href="#/cartoon-activity-books" data-nav class="mm-sub">🧒 Cartoon & Activity Books</a>
     <a href="#/lifebyte" data-nav class="mm-sub">🧠 LifeByte</a>
     <a href="#/celebrationbits" data-nav class="mm-sub">🎉 CelebrationBits</a>
-    <a href="#/about" data-nav>About DesignBits</a>
+    <a href="#/about" data-nav>About DigitalByte</a>
     <a href="#/faq" data-nav>FAQ</a>
     <a href="#/contact" data-nav>Contact</a>
     <a href="#/cart" data-nav>Cart</a>
@@ -357,7 +372,7 @@ select#sortSelect{padding:10px 14px;border-radius:10px;border:1px solid var(--li
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--brand);display:inline-block;"></span>DesignBits</div>
+        <div class="footer-logo"><svg viewBox="0 0 116 128" xmlns="http://www.w3.org/2000/svg" style="width:20px;height:22px;flex-shrink:0;"><defs><linearGradient id="flgTop" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F3E1AE"/><stop offset="55%" stop-color="#D9AE55"/><stop offset="100%" stop-color="#B8862E"/></linearGradient><linearGradient id="flgLeft" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6E4EA8"/><stop offset="100%" stop-color="#432D6C"/></linearGradient><linearGradient id="flgRight" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8F6520"/><stop offset="100%" stop-color="#5E4415"/></linearGradient></defs><g transform="translate(0,4)"><polygon points="58,0 92,26 58,42 24,26" fill="url(#flgTop)"/><polygon points="24,26 58,42 58,112" fill="url(#flgLeft)"/><polygon points="92,26 58,42 58,112" fill="url(#flgRight)"/><polygon points="46,14 54,10 50,20" fill="#FFFFFF" opacity="0.75"/></g></svg>DigitalByte</div>
         <p style="font-size:13.5px;max-width:260px;">Digital products for every part of life — e-books, templates, planners, kids' activity books and celebration cards, ready the moment you buy.</p>
       </div>
       <div>
@@ -371,7 +386,7 @@ select#sortSelect{padding:10px 14px;border-radius:10px;border:1px solid var(--li
       </div>
       <div>
         <h4>Company</h4>
-        <a href="#/about" data-nav>About DesignBits</a>
+        <a href="#/about" data-nav>About DigitalByte</a>
         <a href="#/contact" data-nav>Contact</a>
         <a href="#/faq" data-nav>FAQ</a>
       </div>
@@ -390,7 +405,7 @@ select#sortSelect{padding:10px 14px;border-radius:10px;border:1px solid var(--li
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 DesignBits. All rights reserved.</span>
+      <span>© 2026 DigitalByte. All rights reserved.</span>
       <span>Made for curious, creative, busy people — everywhere.</span>
     </div>
   </div>
@@ -413,7 +428,7 @@ const CATEGORIES = [
 const PRODUCTS = [
 {slug:'25-osho-ideas-explained-simply', title:"25 Osho Ideas Explained Simply", cat:'ebookbyte', price:249, mrp:399, badge:'Bestseller', icon:'📚',
  blurb:"Osho's boldest ideas on freedom, love and awareness, unpacked in plain language.",
- desc:"An independent, original explainer that breaks down 25 of Osho's most talked-about ideas into short, easy-to-read chapters — for curious readers who want the substance without wading through dense philosophy. This is an original DesignBits publication and is not an official or endorsed release.",
+ desc:"An independent, original explainer that breaks down 25 of Osho's most talked-about ideas into short, easy-to-read chapters — for curious readers who want the substance without wading through dense philosophy. This is an original DigitalByte publication and is not an official or endorsed release.",
  includes:["25 short chapters","Key-idea summaries","Reflection questions after each chapter","Printable highlights page"],
  format:"PDF (digital download)", pages:68, language:"English"},
 {slug:'stoicism-in-30-pages', title:"Stoicism in 30 Pages", cat:'ebookbyte', price:199, mrp:299, badge:'Sale', icon:'📖',
@@ -571,7 +586,7 @@ const PRODUCTS = [
    STATE & HELPERS
 ========================================================= */
 // Point this at your deployed/local backend from /server (see server/README.md).
-let API_BASE = 'http://localhost:4000';
+let API_BASE = 'https://designbits.onrender.com';
 
 let cart = {};      // slug -> qty
 let lastOrder = null;
@@ -724,15 +739,15 @@ function render(){
 }
 
 function setTitle(route, parts){
-  let t = 'DesignBits — Digital Products for Every Part of Life';
-  if(route === 'shop') t = 'Shop All Digital Products — DesignBits';
-  else if(route === 'product' && parts[1]){ const p = productBySlug(parts[1]); if(p) t = p.title + ' — DesignBits'; }
-  else if(CATEGORIES.some(c=>c.path===route)){ t = catById(CATEGORIES.find(c=>c.path===route).id).name + ' — DesignBits'; }
-  else if(route==='about') t = 'About DesignBits';
-  else if(route==='contact') t = 'Contact DesignBits';
-  else if(route==='faq') t = 'FAQ — DesignBits';
-  else if(route==='cart') t = 'Your Cart — DesignBits';
-  else if(route==='checkout') t = 'Checkout — DesignBits';
+  let t = 'DigitalByte — Digital Products for Every Part of Life';
+  if(route === 'shop') t = 'Shop All Digital Products — DigitalByte';
+  else if(route === 'product' && parts[1]){ const p = productBySlug(parts[1]); if(p) t = p.title + ' — DigitalByte'; }
+  else if(CATEGORIES.some(c=>c.path===route)){ t = catById(CATEGORIES.find(c=>c.path===route).id).name + ' — DigitalByte'; }
+  else if(route==='about') t = 'About DigitalByte';
+  else if(route==='contact') t = 'Contact DigitalByte';
+  else if(route==='faq') t = 'FAQ — DigitalByte';
+  else if(route==='cart') t = 'Your Cart — DigitalByte';
+  else if(route==='checkout') t = 'Checkout — DigitalByte';
   document.title = t;
 }
 
@@ -774,7 +789,7 @@ function pageHome(){
   <section class="section" id="shopCategories">
     <div class="wrap">
       <div class="section-head">
-        <div><span class="section-tag">Five categories, one shelf</span><h2>Explore DesignBits</h2></div>
+        <div><span class="section-tag">Five categories, one shelf</span><h2>Explore DigitalByte</h2></div>
         <p>Every category is colour-coded, so you always know where you are.</p>
       </div>
       <div class="cat-grid">
@@ -802,7 +817,7 @@ function pageHome(){
   <section class="section">
     <div class="wrap">
       <div class="section-head">
-        <div><span class="section-tag">Why DesignBits</span><h2>Built to actually get used</h2></div>
+        <div><span class="section-tag">Why DigitalByte</span><h2>Built to actually get used</h2></div>
       </div>
       <div class="feature-grid">
         <div class="feature-card"><div class="f-num">01</div><h3>Instant Download</h3><p>Get your digital product quickly after purchase — no waiting, no shipping.</p></div>
@@ -826,7 +841,7 @@ function pageHome(){
     <div class="wrap">
       <div class="newsletter">
         <div>
-          <h2>Get the latest DesignBits.</h2>
+          <h2>Get the latest DigitalByte.</h2>
           <p>New digital products, useful resources and special offers — straight to your inbox.</p>
         </div>
         <form class="newsletter-form" id="newsletterForm">
@@ -857,7 +872,7 @@ function pageShop(catFilter){
     <div class="wrap">
       <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/" data-nav>Home</a><span>/</span>${crumb}</nav>
       <h1>${cat ? cat.icon + ' ' + esc(cat.name) : 'Shop All Products'}</h1>
-      <p>${cat ? esc(cat.desc) : "Browse every digital product on DesignBits — e-books, templates, planners, activity books and celebration cards."}</p>
+      <p>${cat ? esc(cat.desc) : "Browse every digital product on DigitalByte — e-books, templates, planners, activity books and celebration cards."}</p>
     </div>
   </section>
   <section class="section" style="padding-top:0;">
@@ -906,9 +921,9 @@ function pageProduct(slug){
   const related = PRODUCTS.filter(x=>x.cat===p.cat && x.slug!==p.slug).slice(0,4);
   const faqs = [
     ["How do I get the file after buying?", "Right after checkout you'll land on an order confirmation page with instant download links, and we also send a copy to your email."],
-    ["Can I print this at home?", "Yes — every DesignBits product is provided as a print-ready file. Formats and page sizes are listed in the product details above."],
+    ["Can I print this at home?", "Yes — every DigitalByte product is provided as a print-ready file. Formats and page sizes are listed in the product details above."],
     ["Can I edit the content?", "Editable templates open in Canva or the listed editor. E-books, planners and activity books are ready-to-use PDFs and aren't editable."],
-    ["Is this a one-time payment?", "Yes, every DesignBits product is a single one-time purchase with lifetime access to the files you download."]
+    ["Is this a one-time payment?", "Yes, every DigitalByte product is a single one-time purchase with lifetime access to the files you download."]
   ];
   return `
   <section class="section" style="padding-top:28px;">
@@ -1150,8 +1165,8 @@ async function payWithRazorpay(customer){
     amount: data.amount,
     currency: data.currency,
     order_id: data.razorpayOrderId,
-    name: 'DesignBits',
-    description: 'DesignBits digital products',
+    name: 'DigitalByte',
+    description: 'DigitalByte digital products',
     prefill: { name: customer.name, email: customer.email, contact: customer.phone },
     theme: { color: '#4B3FE0' },
     handler: async function(response){
@@ -1295,11 +1310,11 @@ async function verifyPaypalOrder(paypalOrderId){
 function pageAbout(){
   return `
   <section class="page-hero"><div class="wrap"><nav class="breadcrumbs"><a href="#/" data-nav>Home</a><span>/</span><span>About</span></nav>
-    <h1>About DesignBits</h1><p>Digital Products for Every Part of Life.</p></div></section>
+    <h1>About DigitalByte</h1><p>Digital Products for Every Part of Life.</p></div></section>
   <section class="section" style="padding-top:0;">
     <div class="wrap prose">
-      <p>DesignBits started with a simple observation: the useful, well-made digital products we all rely on — a good planner, a clear explainer, a decent card template — were scattered across a hundred different corners of the internet, most of them looking exactly the same.</p>
-      <p>So we built one place for them. DesignBits is a digital products store, not a design agency — we don't take client briefs or freelance commissions. Instead, we design and sell ready-made e-books, templates, planners, activity books and celebration cards that you can buy once and use immediately.</p>
+      <p>DigitalByte started with a simple observation: the useful, well-made digital products we all rely on — a good planner, a clear explainer, a decent card template — were scattered across a hundred different corners of the internet, most of them looking exactly the same.</p>
+      <p>So we built one place for them. DigitalByte is a digital products store, not a design agency — we don't take client briefs or freelance commissions. Instead, we design and sell ready-made e-books, templates, planners, activity books and celebration cards that you can buy once and use immediately.</p>
       <h2>What we believe</h2>
       <div class="about-grid">
         <div class="value-card"><h3 style="font-size:16px;">Useful over trendy</h3><p style="font-size:13.5px;">Every product has to solve an actual, everyday problem — not just look nice in a preview image.</p></div>
@@ -1307,9 +1322,9 @@ function pageAbout(){
         <div class="value-card"><h3 style="font-size:16px;">Honest pricing</h3><p style="font-size:13.5px;">Premium quality shouldn't mean premium prices — we keep things affordable by design.</p></div>
       </div>
       <h2>A note on our explainer e-books</h2>
-      <p>Some EbookByte titles present original, independent explanations of well-known ideas and thinkers. These are DesignBits' own writing and interpretation — they are not official publications, and they don't imply endorsement by, or affiliation with, the original authors, publishers or estates.</p>
+      <p>Some EbookByte titles present original, independent explanations of well-known ideas and thinkers. These are DigitalByte' own writing and interpretation — they are not official publications, and they don't imply endorsement by, or affiliation with, the original authors, publishers or estates.</p>
       <h2>Where we're headed</h2>
-      <p>We're building DesignBits to grow from a focused digital-products shop into a larger marketplace — more categories, more creators, and eventually accounts, wishlists and creator partnerships. What won't change is the focus: discover, buy, download, use.</p>
+      <p>We're building DigitalByte to grow from a focused digital-products shop into a larger marketplace — more categories, more creators, and eventually accounts, wishlists and creator partnerships. What won't change is the focus: discover, buy, download, use.</p>
     </div>
   </section>`;
 }
@@ -1322,7 +1337,7 @@ function pageContact(){
   <section class="section" style="padding-top:0;">
     <div class="wrap contact-grid">
       <div>
-        <div class="contact-info-card"><h4>Email</h4><p style="margin:0;">hello@designbits.example</p></div>
+        <div class="contact-info-card"><h4>Email</h4><p style="margin:0;">hello@digitalbyte.store</p></div>
         <div class="contact-info-card"><h4>Support hours</h4><p style="margin:0;">Monday – Saturday, 10am – 6pm IST</p></div>
         <div class="contact-info-card"><h4>Response time</h4><p style="margin:0;">We typically reply within 1 business day.</p></div>
       </div>
@@ -1342,13 +1357,13 @@ function pageFaq(){
   const groups = [
     {h:"Orders & Delivery", items:[
       ["How quickly do I get my product?", "Instantly. Once your order is placed, you're taken straight to a download page and we also email you the links."],
-      ["Do you ship anything physically?", "No — every DesignBits product is 100% digital. Nothing is ever mailed to you."],
+      ["Do you ship anything physically?", "No — every DigitalByte product is 100% digital. Nothing is ever mailed to you."],
       ["I lost my download link. What now?", "Reach out on the Contact page with your order number and email, and we'll resend your links."]
     ]},
     {h:"Products & Usage", items:[
       ["What file formats do you sell?", "Mostly PDF for e-books, planners and printables, plus Canva template links for editable designs — each product page lists the exact format."],
       ["Can I edit e-books or planners?", "E-books, planners and activity books are ready-to-use PDFs. Items labelled as templates are editable in Canva or the listed tool."],
-      ["Can I resell a DesignBits product?", "No. Our license covers personal, family, classroom or small-business use — not resale or redistribution of the files. See our Digital Product License page."]
+      ["Can I resell a DigitalByte product?", "No. Our license covers personal, family, classroom or small-business use — not resale or redistribution of the files. See our Digital Product License page."]
     ]},
     {h:"Payments & Refunds", items:[
       ["What payment methods do you accept?", "The checkout supports UPI, cards and PayPal for international customers. Note: this is currently a demo checkout — no live payment gateway is connected yet."],
@@ -1358,7 +1373,7 @@ function pageFaq(){
   ];
   return `
   <section class="page-hero"><div class="wrap"><nav class="breadcrumbs"><a href="#/" data-nav>Home</a><span>/</span><span>FAQ</span></nav>
-    <h1>Frequently asked questions</h1><p>Everything you need to know about shopping on DesignBits.</p></div></section>
+    <h1>Frequently asked questions</h1><p>Everything you need to know about shopping on DigitalByte.</p></div></section>
   <section class="section" style="padding-top:0;">
     <div class="wrap prose" style="max-width:760px;">
       ${groups.map(g=>`<h2>${esc(g.h)}</h2><div>${g.items.map((it,i)=>faqItemHtml(it[0],it[1])).join('')}</div>`).join('')}
@@ -1370,9 +1385,9 @@ function pageFaq(){
 function pageLegal(kind){
   const map = {
     privacy: {title:"Privacy Policy", body:`
-      <p>Last updated: August 2026. This Privacy Policy explains what information DesignBits collects when you use this website and how it is used.</p>
+      <p>Last updated: August 2026. This Privacy Policy explains what information DigitalByte collects when you use this website and how it is used.</p>
       <h2>Information we collect</h2>
-      <p>When you place an order or contact us, we collect basic details such as your name, email address and, if provided, phone number. If a payment gateway is connected in the future, payment processing will be handled by that certified third-party provider — DesignBits does not store full card numbers.</p>
+      <p>When you place an order or contact us, we collect basic details such as your name, email address and, if provided, phone number. If a payment gateway is connected in the future, payment processing will be handled by that certified third-party provider — DigitalByte does not store full card numbers.</p>
       <h2>How we use information</h2>
       <ul><li>To deliver the digital products you purchase</li><li>To send order confirmations and support responses</li><li>To send optional newsletter updates, if you subscribe</li><li>To improve the website and product catalog</li></ul>
       <h2>Cookies</h2>
@@ -1380,21 +1395,21 @@ function pageLegal(kind){
       <h2>Your choices</h2>
       <p>You can unsubscribe from the newsletter at any time, and you can contact us to request that your personal data be deleted, subject to any records we're legally required to keep.</p>
       <h2>Contact</h2>
-      <p>Questions about this policy can be sent to hello@designbits.example.</p>`},
+      <p>Questions about this policy can be sent to hello@digitalbyte.store.</p>`},
     terms: {title:"Terms & Conditions", body:`
-      <p>Last updated: August 2026. By using the DesignBits website and purchasing our products, you agree to the following terms.</p>
+      <p>Last updated: August 2026. By using the DigitalByte website and purchasing our products, you agree to the following terms.</p>
       <h2>Use of the website</h2>
-      <p>DesignBits products are for personal, family, educational or small-business use as described in our Digital Product License. You agree not to misuse the website, attempt to disrupt its operation, or resell our files without permission.</p>
+      <p>DigitalByte products are for personal, family, educational or small-business use as described in our Digital Product License. You agree not to misuse the website, attempt to disrupt its operation, or resell our files without permission.</p>
       <h2>Products & pricing</h2>
       <p>Prices are listed in Indian Rupees (₹) and may change without prior notice. Sample products marked as demo content are illustrative and may be updated as the catalog grows.</p>
       <h2>Digital delivery</h2>
       <p>All products are delivered digitally. Once a purchase is completed and files are made available, the order is considered fulfilled.</p>
       <h2>Limitation of liability</h2>
-      <p>DesignBits products are provided "as is." We aren't liable for indirect damages arising from the use of our digital products or website.</p>
+      <p>DigitalByte products are provided "as is." We aren't liable for indirect damages arising from the use of our digital products or website.</p>
       <h2>Changes to these terms</h2>
       <p>We may update these terms from time to time; continued use of the site means you accept the current version.</p>`},
     refund: {title:"Refund Policy", body:`
-      <p>Last updated: August 2026. Because DesignBits products are delivered instantly as digital files, our refund policy works a little differently from physical goods.</p>
+      <p>Last updated: August 2026. Because DigitalByte products are delivered instantly as digital files, our refund policy works a little differently from physical goods.</p>
       <h2>When a refund may apply</h2>
       <ul><li>The file you received is corrupted or does not match the product description</li><li>You were charged more than once for the same order</li><li>The wrong product was delivered due to a checkout error</li></ul>
       <h2>When a refund typically won't apply</h2>
@@ -1402,13 +1417,13 @@ function pageLegal(kind){
       <h2>How to request one</h2>
       <p>Contact us within 7 days of purchase with your order number and a short description of the issue. We aim to respond within 2 business days.</p>`},
     license: {title:"Digital Product License / Usage Policy", body:`
-      <p>Last updated: August 2026. This policy explains what you can and can't do with a DesignBits digital product after purchase.</p>
+      <p>Last updated: August 2026. This policy explains what you can and can't do with a DigitalByte digital product after purchase.</p>
       <h2>What you can do</h2>
       <ul><li>Print or use the product for yourself, your family, your students or your own small business</li><li>Make copies for your own personal or classroom use</li><li>Personalise editable templates with your own text, colours and photos</li></ul>
       <h2>What you can't do</h2>
-      <ul><li>Resell, redistribute or share the original files (as-is or lightly modified) as your own product</li><li>Upload the files to a public template marketplace or stock site</li><li>Claim authorship of DesignBits' original explainer content</li></ul>
+      <ul><li>Resell, redistribute or share the original files (as-is or lightly modified) as your own product</li><li>Upload the files to a public template marketplace or stock site</li><li>Claim authorship of DigitalByte' original explainer content</li></ul>
       <h2>A note on explainer e-books</h2>
-      <p>EbookByte titles that explain the ideas of well-known thinkers or authors are original DesignBits content. They are independent explanatory works, not the original author's text, and are not endorsed by or affiliated with the original author, their publisher or estate unless explicitly stated.</p>
+      <p>EbookByte titles that explain the ideas of well-known thinkers or authors are original DigitalByte content. They are independent explanatory works, not the original author's text, and are not endorsed by or affiliated with the original author, their publisher or estate unless explicitly stated.</p>
       <h2>Questions</h2>
       <p>If you're unsure whether your intended use is covered, contact us before purchasing.</p>`}
   };
@@ -1474,7 +1489,7 @@ document.addEventListener('submit', (e) => {
     navigate('#/shop');
   } else if(e.target.id === 'newsletterForm'){
     e.preventDefault();
-    showToast('Subscribed! Welcome to DesignBits (demo).');
+    showToast('Subscribed! Welcome to DigitalByte (demo).');
     e.target.reset();
   } else if(e.target.id === 'contactForm'){
     e.preventDefault();
