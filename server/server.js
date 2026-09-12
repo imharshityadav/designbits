@@ -15,14 +15,41 @@ const { createDownloadToken, verifyDownloadToken } = require('./lib/tokens');
 const app = express();
 const PORT = process.env.PORT || 4000;
 const FRONTEND_URL = (process.env.FRONTEND_URL || 'http://localhost:8080').split(',')[0].trim();
-const ALLOWED_ORIGINS = (process.env.FRONTEND_URL || 'http://localhost:8080').split(',').map(s => s.trim());
+// Normalizes an origin so small differences (trailing slash, www vs no-www,
+// upper/lower case) don't accidentally block a legitimate request — this is
+// what caused the CORS errors earlier when FRONTEND_URL was typed slightly
+// differently from the browser's actual origin.
+function normalizeOrigin(o) {
+  return String(o || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\/$/, '')
+    .replace(/^https?:\/\/www\./, 'https://');
+}
+
+const ALLOWED_ORIGINS = (process.env.FRONTEND_URL || 'http://localhost:8080')
+  .split(',')
+  .map(s => s.trim())
+  .filter(Boolean);
+const ALLOWED_ORIGINS_NORMALIZED = ALLOWED_ORIGINS.map(normalizeOrigin);
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-app.use(cors({ origin: ALLOWED_ORIGINS }));
+app.use(cors({
+  origin: (origin, callback) => {
+    // Non-browser requests (health checks, curl, server-to-server) send no
+    // Origin header at all — always allow those.
+    if (!origin) return callback(null, true);
+    if (ALLOWED_ORIGINS_NORMALIZED.includes(normalizeOrigin(origin))) {
+      return callback(null, true);
+    }
+    console.warn(`CORS blocked origin "${origin}" — allowed: ${ALLOWED_ORIGINS.join(', ')}`);
+    callback(new Error('Not allowed by CORS'));
+  },
+}));
 app.use(express.json());
 
 /* ------------------------------------------------------------------ */
@@ -31,8 +58,8 @@ app.use(express.json());
 
 // Public catalog read — safe to expose. Prices here are for display only;
 // the server always re-prices from data/products.json before charging.
-app.get('/api/products', (req, res) => {
-  const products = loadProducts().filter(p => p.active !== false);
+app.get('/api/products', async (req, res) => {
+  const products = (await loadProducts()).filter(p => p.active !== false);
   res.json(products);
 });
 
@@ -43,7 +70,7 @@ app.get('/api/products', (req, res) => {
 app.post('/api/razorpay/create-order', async (req, res) => {
   try {
     const { items, customer } = req.body;
-    const { lines, totalInr } = priceCart(items);
+    const { lines, totalInr } = await priceCart(items);
 
     const orderId = 'DB' + nanoid(8).toUpperCase();
     const razorpayOrder = await razorpay.orders.create({
@@ -112,7 +139,7 @@ app.post('/api/razorpay/verify', (req, res) => {
 app.post('/api/paypal/create-order', async (req, res) => {
   try {
     const { items, customer } = req.body;
-    const { lines, totalInr } = priceCart(items);
+    const { lines, totalInr } = await priceCart(items);
 
     const currency = (process.env.PAYPAL_CURRENCY || 'USD').toUpperCase();
     const rate = Number(process.env.INR_TO_USD_RATE || 0.012);
@@ -178,6 +205,20 @@ app.post('/api/paypal/capture-order', async (req, res) => {
 /* Downloads — only reachable via a signed, time-limited token          */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Accepts either a bare Google Drive file ID or a full share link (any of
+ * Drive's common formats) and returns just the file ID. Lets you paste
+ * whatever Drive gives you straight into products.json's driveFileId field.
+ */
+function extractDriveFileId(raw) {
+  const value = String(raw || '').trim();
+  let match = value.match(/\/d\/([a-zA-Z0-9_-]{10,})/);
+  if (match) return match[1];
+  match = value.match(/[?&]id=([a-zA-Z0-9_-]{10,})/);
+  if (match) return match[1];
+  return value; // already looks like a bare ID
+}
+
 function buildOrderResponse(order) {
   return {
     id: order.id,
@@ -192,7 +233,7 @@ function buildOrderResponse(order) {
   };
 }
 
-app.get('/api/download', (req, res) => {
+app.get('/api/download', async (req, res) => {
   const { token } = req.query;
   const check = verifyDownloadToken(token);
   if (!check.valid) return res.status(403).send(check.reason);
@@ -200,14 +241,20 @@ app.get('/api/download', (req, res) => {
   const order = orders.getOrder(check.orderId);
   if (!order || order.status !== 'paid') return res.status(403).send('Order not paid.');
 
-  const product = findBySlug(check.slug);
+  const product = await findBySlug(check.slug);
   if (!product) return res.status(404).send('Product not found.');
 
   // Preferred path: file lives in Google Drive, shared as "Anyone with the
   // link can view". We redirect the (already payment-verified) buyer
   // straight to Drive's direct-download endpoint.
+  // Preferred path: file lives in Google Drive, shared as "Anyone with the
+  // link can view". We redirect the (already payment-verified) buyer
+  // straight to Drive's direct-download endpoint. Accepts either a bare
+  // file ID or a full Drive share link pasted straight from "Copy link" —
+  // extractDriveFileId() figures out which.
   if (product.driveFileId) {
-    const driveUrl = `https://drive.usercontent.google.com/download?id=${encodeURIComponent(product.driveFileId)}&export=download&confirm=t`;
+    const fileId = extractDriveFileId(product.driveFileId);
+    const driveUrl = `https://drive.usercontent.google.com/download?id=${encodeURIComponent(fileId)}&export=download&confirm=t`;
     return res.redirect(driveUrl);
   }
 
@@ -228,6 +275,6 @@ app.get('/api/download', (req, res) => {
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
 app.listen(PORT, () => {
-  console.log(`DesignBits backend running on http://localhost:${PORT}`);
+  console.log(`DigitalByte backend running on http://localhost:${PORT}`);
   console.log(`Allowing requests from: ${ALLOWED_ORIGINS.join(', ')}`);
 });
