@@ -160,11 +160,49 @@ body.menu-open .mobile-menu{display:flex;}
 .product-card{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .18s ease, transform .18s ease;}
 .product-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
 .cover{position:relative;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.cover .cover-icon{font-size:44px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.15));}
 .cover::before{content:"";position:absolute;inset:0;background:
   repeating-linear-gradient(115deg, rgba(255,255,255,.10) 0 2px, transparent 2px 22px);}
 .cover.has-photo::before{display:none;}
-.cover.has-photo{background:var(--paper);}
+.cover.has-photo{background:var(--paper);padding:18px;}
+.cover-photo-frame{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.cover-photo-frame img{
+  max-width:80%;
+  max-height:88%;
+  object-fit:contain;
+  border-radius:4px;
+  box-shadow:0 16px 32px rgba(20,15,10,.28), 0 4px 10px rgba(20,15,10,.14);
+}
+/* Auto-generated text cover — shows the product's real title when no photo is set */
+.cover-textmock{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:10px;
+  padding:22px 16px;
+  width:100%;
+  height:100%;
+}
+.cover-icon-small{font-size:26px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.18));}
+.cover-title-text{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:16px;
+  line-height:1.28;
+  color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.25);
+  display:-webkit-box;
+  -webkit-line-clamp:4;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.cover-rule{width:34px;height:2px;background:rgba(255,255,255,.6);border-radius:2px;}
+.pd-gallery .cover-title-text{font-size:26px;-webkit-line-clamp:6;}
+.pd-gallery .cover-icon-small{font-size:44px;}
+.pd-gallery .cover-rule{width:52px;height:3px;}
 .cover .cover-badges{position:absolute;top:10px;left:10px;display:flex;gap:6px;flex-wrap:wrap;}
 .cover .cover-cat{position:absolute;bottom:10px;left:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:#fff;background:rgba(0,0,0,.28);padding:3px 9px;border-radius:999px;}
 .product-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex-grow:1;}
@@ -224,7 +262,6 @@ select#sortSelect{padding:10px 14px;border-radius:10px;border:1px solid var(--li
 .pd-layout{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;}
 @media (max-width:860px){.pd-layout{grid-template-columns:1fr;gap:28px;}}
 .pd-gallery .cover{aspect-ratio:1/1;border-radius:var(--radius-lg);}
-.pd-gallery .cover .cover-icon{font-size:96px;}
 .pd-cat-chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:999px;margin-bottom:14px;}
 .pd-title{font-size:clamp(26px,3.4vw,36px);}
 .pd-price{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;display:flex;align-items:baseline;gap:12px;margin:14px 0 18px;}
@@ -640,12 +677,17 @@ function badgeHtml(badge){
 
 function coverHtml(p, big){
   const cat = catById(p.cat);
-  // If a product has a real photo (p.image), show that instead of the
-  // placeholder icon/gradient. Falls back automatically for any product
-  // that doesn't have one yet, so you can add photos gradually.
+  // If a product has a real photo (p.image), show that as a floating,
+  // shadowed "mockup" on the category-colored backdrop. Otherwise,
+  // auto-generate a text cover with the product's actual name on it —
+  // no image needed at all.
   const visual = p.image
-    ? `<img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">`
-    : `<span class="cover-icon" aria-hidden="true">${p.icon}</span>`;
+    ? `<div class="cover-photo-frame"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy"></div>`
+    : `<div class="cover-textmock">
+         <span class="cover-icon-small" aria-hidden="true">${p.icon}</span>
+         <span class="cover-title-text">${esc(p.title)}</span>
+         <span class="cover-rule"></span>
+       </div>`;
   return `<div class="cover cover-${cat.color}${p.image ? ' has-photo' : ''}">
       <div class="cover-badges">${badgeHtml(p.badge)}</div>
       ${visual}
