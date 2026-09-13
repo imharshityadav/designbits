@@ -160,9 +160,49 @@ body.menu-open .mobile-menu{display:flex;}
 .product-card{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .18s ease, transform .18s ease;}
 .product-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
 .cover{position:relative;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.cover .cover-icon{font-size:44px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.15));}
 .cover::before{content:"";position:absolute;inset:0;background:
   repeating-linear-gradient(115deg, rgba(255,255,255,.10) 0 2px, transparent 2px 22px);}
+.cover.has-photo::before{display:none;}
+.cover.has-photo{background:var(--paper);padding:18px;}
+.cover-photo-frame{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.cover-photo-frame img{
+  max-width:80%;
+  max-height:88%;
+  object-fit:contain;
+  border-radius:4px;
+  box-shadow:0 16px 32px rgba(20,15,10,.28), 0 4px 10px rgba(20,15,10,.14);
+}
+/* Auto-generated text cover — shows the product's real title when no photo is set */
+.cover-textmock{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:10px;
+  padding:22px 16px;
+  width:100%;
+  height:100%;
+}
+.cover-icon-small{font-size:26px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.18));}
+.cover-title-text{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:16px;
+  line-height:1.28;
+  color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.25);
+  display:-webkit-box;
+  -webkit-line-clamp:4;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.cover-rule{width:34px;height:2px;background:rgba(255,255,255,.6);border-radius:2px;}
+.pd-gallery .cover-title-text{font-size:26px;-webkit-line-clamp:6;}
+.pd-gallery .cover-icon-small{font-size:44px;}
+.pd-gallery .cover-rule{width:52px;height:3px;}
 .cover .cover-badges{position:absolute;top:10px;left:10px;display:flex;gap:6px;flex-wrap:wrap;}
 .cover .cover-cat{position:absolute;bottom:10px;left:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:#fff;background:rgba(0,0,0,.28);padding:3px 9px;border-radius:999px;}
 .product-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex-grow:1;}
@@ -207,6 +247,7 @@ body.menu-open .mobile-menu{display:flex;}
 .shop-layout{display:grid;grid-template-columns:230px 1fr;gap:36px;align-items:start;}
 @media (max-width:860px){.shop-layout{grid-template-columns:1fr;}}
 .filter-box{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:sticky;top:96px;}
+@media (max-width:860px){.filter-box{position:static;}}
 .filter-box h4{font-size:12px;text-transform:uppercase;letter-spacing:.05em;font-family:'IBM Plex Mono',monospace;color:var(--ink-faint);margin:0 0 14px;}
 .filter-list{display:flex;flex-direction:column;gap:2px;margin-bottom:24px;}
 .filter-list a{padding:9px 10px;border-radius:8px;font-size:14px;font-weight:600;color:var(--ink-soft);}
@@ -221,7 +262,6 @@ select#sortSelect{padding:10px 14px;border-radius:10px;border:1px solid var(--li
 .pd-layout{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;}
 @media (max-width:860px){.pd-layout{grid-template-columns:1fr;gap:28px;}}
 .pd-gallery .cover{aspect-ratio:1/1;border-radius:var(--radius-lg);}
-.pd-gallery .cover .cover-icon{font-size:96px;}
 .pd-cat-chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:999px;margin-bottom:14px;}
 .pd-title{font-size:clamp(26px,3.4vw,36px);}
 .pd-price{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;display:flex;align-items:baseline;gap:12px;margin:14px 0 18px;}
@@ -253,6 +293,7 @@ select#sortSelect{padding:10px 14px;border-radius:10px;border:1px solid var(--li
 .cart-layout{display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start;}
 @media (max-width:860px){.cart-layout{grid-template-columns:1fr;}}
 .summary-box{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:sticky;top:96px;}
+@media (max-width:860px){.summary-box{position:static;}}
 .summary-row{display:flex;justify-content:space-between;font-size:14.5px;margin-bottom:10px;color:var(--ink-soft);}
 .summary-row.total{color:var(--ink);font-weight:700;font-size:17px;border-top:1px solid var(--line);padding-top:14px;margin-top:14px;}
 
@@ -426,7 +467,7 @@ const CATEGORIES = [
 ];
 
 const PRODUCTS = [
-{slug:'25-osho-ideas-explained-simply', title:"25 Osho Ideas Explained Simply", cat:'ebookbyte', price:249, mrp:399, badge:'Bestseller', icon:'📚',
+{slug:'25-osho-ideas-explained-simply', title:"25 Osho Ideas Explained Simply", cat:'ebookbyte', price:249, mrp:399, badge:'Bestseller', icon:'📚', image:'images/25-osho-ideas-explained-simply.jpg',
  blurb:"Osho's boldest ideas on freedom, love and awareness, unpacked in plain language.",
  desc:"An independent, original explainer that breaks down 25 of Osho's most talked-about ideas into short, easy-to-read chapters — for curious readers who want the substance without wading through dense philosophy. This is an original DigitalByte publication and is not an official or endorsed release.",
  includes:["25 short chapters","Key-idea summaries","Reflection questions after each chapter","Printable highlights page"],
@@ -586,6 +627,9 @@ const PRODUCTS = [
    STATE & HELPERS
 ========================================================= */
 // Point this at your deployed/local backend from /server (see server/README.md).
+// Auto-detects the right backend: localhost while testing on your own
+// machine, your live Render URL everywhere else (including any fresh
+// upload of this file — no manual edit needed anymore).
 let API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
   ? 'http://localhost:4000'
   : 'https://designbits.onrender.com';
@@ -633,9 +677,20 @@ function badgeHtml(badge){
 
 function coverHtml(p, big){
   const cat = catById(p.cat);
-  return `<div class="cover cover-${cat.color}">
+  // If a product has a real photo (p.image), show that as a floating,
+  // shadowed "mockup" on the category-colored backdrop. Otherwise,
+  // auto-generate a text cover with the product's actual name on it —
+  // no image needed at all.
+  const visual = p.image
+    ? `<div class="cover-photo-frame"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy"></div>`
+    : `<div class="cover-textmock">
+         <span class="cover-icon-small" aria-hidden="true">${p.icon}</span>
+         <span class="cover-title-text">${esc(p.title)}</span>
+         <span class="cover-rule"></span>
+       </div>`;
+  return `<div class="cover cover-${cat.color}${p.image ? ' has-photo' : ''}">
       <div class="cover-badges">${badgeHtml(p.badge)}</div>
-      <span class="cover-icon" aria-hidden="true">${p.icon}</span>
+      ${visual}
       <span class="cover-cat">${esc(cat.name)}</span>
     </div>`;
 }
@@ -678,10 +733,32 @@ function navigate(hash){
 }
 
 window.addEventListener('hashchange', render);
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   buildNavDropdown();
+  await loadProductsFromBackend();
   render();
 });
+
+/**
+ * Tries to replace the built-in PRODUCTS list with live data from the
+ * backend (which can itself be reading a Google Sheet — see server/lib/products.js).
+ * If the backend is unreachable (offline preview, backend down, no
+ * API_BASE configured), the page keeps working with the products already
+ * baked into this file.
+ */
+async function loadProductsFromBackend(){
+  try{
+    const resp = await fetch(`${API_BASE}/api/products`);
+    if(!resp.ok) throw new Error('Backend returned ' + resp.status);
+    const data = await resp.json();
+    if(Array.isArray(data) && data.length){
+      PRODUCTS.length = 0;
+      data.forEach(p => PRODUCTS.push(p));
+    }
+  } catch(err){
+    console.warn('Using built-in product data — could not reach backend:', err.message);
+  }
+}
 
 function buildNavDropdown(){
   document.getElementById('navCatPanel').innerHTML = CATEGORIES.map(c =>
